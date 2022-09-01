@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PartenaireRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PartenaireRepository::class)]
 class Partenaire
@@ -15,18 +16,24 @@ class Partenaire
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
+    #[Assert\NotNull()]
+    #[Assert\Length(min:2, max:50)]
     private ?string $name = null;
 
     #[ORM\Column]
     private ?bool $active = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 100, nullable: true)]
+    #[Assert\LessThan(100)]
     private ?string $short_description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\LessThan(100)]
     private ?string $full_description = null;
 
-    #[ORM\Column(length: 30, nullable: true)]
+    #[ORM\Column(length: 100, nullable: true)]
+    #[Assert\LessThan(100)]
     private ?string $logo_url = null;
 
     #[ORM\Column(length: 100, nullable: true)]
