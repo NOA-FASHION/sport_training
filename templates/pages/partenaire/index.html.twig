@@ -3,6 +3,7 @@
 {% block title %}Sport-training Partenaires{% endblock %}
 
 {% block body %}
+{% if not partenaires.items is same as ([]) %}
 <div class="container">
 <h1>Partenaires</h1>
  <div class="container">
@@ -50,4 +51,10 @@
   </div>
   </div>
 </div>
+<div class="navigation d-flex justify-content-center mt-4">
+    {{ knp_pagination_render(partenaires) }}
+</div>
+{% else %}
+<h4>Il n'y a pas de partenairescomposer require knplabs/knp-paginator-bundle</h4>
+{% endif %}
 {% endblock %}

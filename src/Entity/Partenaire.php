@@ -25,55 +25,55 @@ class Partenaire
     private ?bool $active = null;
 
     #[ORM\Column(length: 100, nullable: true)]
-    #[Assert\LessThan(100)]
+    
     private ?string $shortDescription = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\LessThan(100)]
+    
     private ?string $fullDescription = null;
 
     #[ORM\Column(length: 100, nullable: true)]
-    #[Assert\LessThan(100)]
-    private ?string $logo_url = null;
+   
+    private ?string $logoUrl = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $dpo = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    private ?string $technical_contact = null;
+    private ?string $technicalContact = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    private ?string $commercial_contact = null;
+    private ?string $commercialContact = null;
 
     #[ORM\Column]
-    private ?bool $members_read = null;
+    private ?bool $membersRead = null;
 
     #[ORM\Column]
-    private ?bool $members_write = null;
+    private ?bool $membersWrite = null;
 
     #[ORM\Column]
-    private ?bool $members_product = null;
+    private ?bool $membersProduct = null;
 
     #[ORM\Column]
-    private ?bool $members_payment = null;
+    private ?bool $membersPayment = null;
 
     #[ORM\Column]
-    private ?bool $members_stat = null;
+    private ?bool $membersStat = null;
 
     #[ORM\Column]
-    private ?bool $members_subscription = null;
+    private ?bool $membersSubscription = null;
 
     #[ORM\Column]
-    private ?bool $payment_schedules_read = null;
+    private ?bool $paymentSchedulesRead = null;
 
     #[ORM\Column]
-    private ?bool $payment_schedules_write = null;
+    private ?bool $paymentSchedulesWrite = null;
 
     #[ORM\Column]
-    private ?bool $payment_days_read = null;
+    private ?bool $paymentDaysRead = null;
 
     #[ORM\Column]
-    private ?bool $payment_day_write = null;
+    private ?bool $paymentDayWrite = null;
 
     public function getId(): ?int
     {
@@ -130,12 +130,12 @@ class Partenaire
 
     public function getLogoUrl(): ?string
     {
-        return $this->logo_url;
+        return $this->logoUrl;
     }
 
-    public function setLogoUrl(?string $logo_url): self
+    public function setLogoUrl(?string $logoUrl): self
     {
-        $this->logo_url = $logo_url;
+        $this->logoUrl = $logoUrl;
 
         return $this;
     }
@@ -154,144 +154,144 @@ class Partenaire
 
     public function getTechnicalContact(): ?string
     {
-        return $this->technical_contact;
+        return $this->technicalContact;
     }
 
-    public function setTechnicalContact(?string $technical_contact): self
+    public function setTechnicalContact(?string $technicalContact): self
     {
-        $this->technical_contact = $technical_contact;
+        $this->technicalContact = $technicalContact;
 
         return $this;
     }
 
     public function getCommercialContact(): ?string
     {
-        return $this->commercial_contact;
+        return $this->commercialContact;
     }
 
-    public function setCommercialContact(?string $commercial_contact): self
+    public function setCommercialContact(?string $commercialContact): self
     {
-        $this->commercial_contact = $commercial_contact;
+        $this->commercialContact = $commercialContact;
 
         return $this;
     }
 
     public function isMembersRead(): ?bool
     {
-        return $this->members_read;
+        return $this->membersRead;
     }
 
-    public function setMembersRead(bool $members_read): self
+    public function setMembersRead(bool $membersRead): self
     {
-        $this->members_read = $members_read;
+        $this->membersRead = $membersRead;
 
         return $this;
     }
 
     public function isMembersWrite(): ?bool
     {
-        return $this->members_write;
+        return $this->membersWrite;
     }
 
-    public function setMembersWrite(bool $members_write): self
+    public function setMembersWrite(bool $membersWrite): self
     {
-        $this->members_write = $members_write;
+        $this->membersWrite = $membersWrite;
 
         return $this;
     }
 
     public function isMembersProduct(): ?bool
     {
-        return $this->members_product;
+        return $this->membersProduct;
     }
 
-    public function setMembersProduct(bool $members_product): self
+    public function setMembersProduct(bool $membersProduct): self
     {
-        $this->members_product = $members_product;
+        $this->membersProduct = $membersProduct;
 
         return $this;
     }
 
     public function isMembersPayment(): ?bool
     {
-        return $this->members_payment;
+        return $this->membersPayment;
     }
 
-    public function setMembersPayment(bool $members_payment): self
+    public function setMembersPayment(bool $membersPayment): self
     {
-        $this->members_payment = $members_payment;
+        $this->membersPayment = $membersPayment;
 
         return $this;
     }
 
     public function isMembersStat(): ?bool
     {
-        return $this->members_stat;
+        return $this->membersStat;
     }
 
-    public function setMembersStat(bool $members_stat): self
+    public function setMembersStat(bool $membersStat): self
     {
-        $this->members_stat = $members_stat;
+        $this->membersStat = $membersStat;
 
         return $this;
     }
 
     public function getMembersSubscription(): ?bool
     {
-        return $this->members_subscription;
+        return $this->membersSubscription;
     }
 
-    public function setMembersSubscription(bool $members_subscription): self
+    public function setMembersSubscription(bool $membersSubscription): self
     {
-        $this->members_subscription = $members_subscription;
+        $this->membersSubscription = $membersSubscription;
 
         return $this;
     }
 
     public function isPaymentSchedulesRead(): ?bool
     {
-        return $this->payment_schedules_read;
+        return $this->paymentSchedulesRead;
     }
 
-    public function setPaymentSchedulesRead(bool $payment_schedules_read): self
+    public function setPaymentSchedulesRead(bool $paymentSchedulesRead): self
     {
-        $this->payment_schedules_read = $payment_schedules_read;
+        $this->paymentSchedulesRead = $paymentSchedulesRead;
 
         return $this;
     }
 
     public function isPaymentSchedulesWrite(): ?bool
     {
-        return $this->payment_schedules_write;
+        return $this->paymentSchedulesWrite;
     }
 
-    public function setPaymentSchedulesWrite(bool $payment_schedules_write): self
+    public function setPaymentSchedulesWrite(bool $paymentSchedulesWrite): self
     {
-        $this->payment_schedules_write = $payment_schedules_write;
+        $this->paymentSchedulesWrite = $paymentSchedulesWrite;
 
         return $this;
     }
 
     public function isPaymentDaysRead(): ?bool
     {
-        return $this->payment_days_read;
+        return $this->paymentDaysRead;
     }
 
-    public function setPaymentDaysRead(bool $payment_days_read): self
+    public function setPaymentDaysRead(bool $paymentDaysRead): self
     {
-        $this->payment_days_read = $payment_days_read;
+        $this->paymentDaysRead = $paymentDaysRead;
 
         return $this;
     }
 
     public function isPaymentDayWrite(): ?bool
     {
-        return $this->payment_day_write;
+        return $this->paymentDayWrite;
     }
 
-    public function setPaymentDayWrite(bool $payment_day_write): self
+    public function setPaymentDayWrite(bool $paymentDayWrite): self
     {
-        $this->payment_day_write = $payment_day_write;
+        $this->paymentDayWrite = $paymentDayWrite;
 
         return $this;
     }

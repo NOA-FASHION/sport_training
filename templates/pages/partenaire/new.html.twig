@@ -1,0 +1,174 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ <div class="container">
+    <h1>
+      Création d'un partenaire
+    </h1>
+        {% for message in app.flashes('success') %}
+      <div class="alert alert-success mt-4">
+        {{ message }}
+      </div>
+        {% endfor %}
+
+    {{ form_start(form) }}
+
+    <div class="form-group">
+      {{ form_label(form.name) }}
+      {{ form_widget(form.name) }}
+      <div class="form-error">
+        {{ form_errors(form.name) }}
+      </div>
+    </div>
+
+    <div class="form-check form-switch">
+      {{ form_label(form.active) }}
+      {{ form_widget(form.active) }}
+      <div class="form-error">
+        {{ form_errors(form.active) }}
+      </div>
+    </div>
+
+     <div class="form-group">
+      {{ form_label(form.shortDescription) }}
+      {{ form_widget(form.shortDescription) }}
+      <div class="form-error">
+        {{ form_errors(form.shortDescription) }}
+      </div>
+    </div>
+
+
+     <div class="form-group">
+      {{ form_label(form.fullDescription) }}
+      {{ form_widget(form.fullDescription) }}
+      <div class="form-error">
+        {{ form_errors(form.fullDescription) }}
+      </div>
+    </div>
+
+      <div class="form-group">
+      {{ form_label(form.logoUrl) }}
+      {{ form_widget(form.logoUrl) }}
+      <div class="form-error">
+        {{ form_errors(form.logoUrl) }}
+      </div>
+    </div>
+
+       <div class="form-group">
+      {{ form_label(form.dpo) }}
+      {{ form_widget(form.dpo) }}
+      <div class="form-error">
+        {{ form_errors(form.dpo) }}
+      </div>
+    </div>
+
+     <div class="form-group">
+      {{ form_label(form.technicalContact) }}
+      {{ form_widget(form.technicalContact) }}
+      <div class="form-error">
+        {{ form_errors(form.technicalContact) }}
+      </div>
+    </div>
+
+      <div class="form-group">
+      {{ form_label(form.commercialContact) }}
+      {{ form_widget(form.commercialContact) }}
+      <div class="form-error">
+        {{ form_errors(form.commercialContact) }}
+      </div>
+    </div>
+
+
+  <div class="form-group">
+      {{ form_label(form.membersRead) }}
+      {{ form_widget(form.membersRead) }}
+      <div class="form-error">
+        {{ form_errors(form.membersRead) }}
+      </div>
+    </div>
+
+
+  <div class="form-group">
+      {{ form_label(form.membersWrite) }}
+      {{ form_widget(form.membersWrite) }}
+      <div class="form-error">
+        {{ form_errors(form.membersWrite) }}
+      </div>
+    </div>
+
+
+  <div class="form-group">
+      {{ form_label(form.membersProduct) }}
+      {{ form_widget(form.membersProduct) }}
+      <div class="form-error">
+        {{ form_errors(form.membersProduct) }}
+      </div>
+    </div>
+
+      <div class="form-group">
+      {{ form_label(form.membersPayment) }}
+      {{ form_widget(form.membersPayment) }}
+      <div class="form-error">
+        {{ form_errors(form.membersPayment) }}
+      </div>
+    </div>
+
+
+  <div class="form-group">
+      {{ form_label(form.membersStat) }}
+      {{ form_widget(form.membersStat) }}
+      <div class="form-error">
+        {{ form_errors(form.membersStat) }}
+      </div>
+    </div>
+
+
+  <div class="form-group">
+      {{ form_label(form.membersSubscription) }}
+      {{ form_widget(form.membersSubscription) }}
+      <div class="form-error">
+        {{ form_errors(form.membersSubscription) }}
+      </div>
+    </div>
+
+
+  <div class="form-group">
+      {{ form_label(form.paymentSchedulesRead) }}
+      {{ form_widget(form.paymentSchedulesRead) }}
+      <div class="form-error">
+        {{ form_errors(form.paymentSchedulesRead) }}
+      </div>
+    </div>
+
+      <div class="form-group">
+      {{ form_label(form.paymentSchedulesWrite) }}
+      {{ form_widget(form.paymentSchedulesWrite) }}
+      <div class="form-error">
+        {{ form_errors(form.paymentSchedulesWrite) }}
+      </div>
+    </div>
+
+      <div class="form-group">
+      {{ form_label(form.paymentDaysRead) }}
+      {{ form_widget(form.paymentDaysRead) }}
+      <div class="form-error">
+        {{ form_errors(form.paymentDaysRead) }}
+      </div>
+    </div>
+
+      <div class="form-group">
+      {{ form_label(form.paymentDayWrite) }}
+      {{ form_widget(form.paymentDayWrite) }}
+      <div class="form-error">
+        {{ form_errors(form.paymentDayWrite) }}
+      </div>
+    </div>
+
+
+
+
+
+
+    {{ form_end(form) }}
+ </div>
+{% endblock %}
