@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sport-training Partenaires{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>Partenaires</h1>
+ <div class="container">
+  <div class="row">
+  
+{% for partenaire in partenaires %}
+ <div class="col-4">
+ <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+ <div class="row">
+ <div class=" mx-4 col card-header"> Nom partenaire:  {{partenaire.name}}
+
+
+
+      
+
+ {% if partenaire.active %}
+ 
+  <div class="col form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
+        <label class="form-check-label" for="flexSwitchCheckChecked">Activation</label>
+      </div>
+
+        {% else %}
+    <div class="col form-check form-switch">
+        <input class="form-check-input"  type="checkbox" id="flexSwitchCheckDefault" >
+        <label class="form-check-label" for="flexSwitchCheckDefault">Activation</label>
+      </div>
+      
+
+
+ {% endif %}
+
+</div>
+ </div>
+  
+  <div class="card-body">
+    <h4 class="card-title">{{partenaire.shortDescription}}</h4>
+    <p class="card-text">{{partenaire.fullDescription}}</p>
+  </div>
+</div>
+ </div>
+{% endfor %}
+
+
+  </div>
+  </div>
+</div>
+{% endblock %}

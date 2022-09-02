@@ -26,11 +26,11 @@ class Partenaire
 
     #[ORM\Column(length: 100, nullable: true)]
     #[Assert\LessThan(100)]
-    private ?string $short_description = null;
+    private ?string $shortDescription = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\LessThan(100)]
-    private ?string $full_description = null;
+    private ?string $fullDescription = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     #[Assert\LessThan(100)]
@@ -106,24 +106,24 @@ class Partenaire
 
     public function getShortDescription(): ?string
     {
-        return $this->short_description;
+        return $this->shortDescription;
     }
 
-    public function setShortDescription(?string $short_description): self
+    public function setShortDescription(?string $shortDescription): self
     {
-        $this->short_description = $short_description;
+        $this->shortDescription = $shortDescription;
 
         return $this;
     }
 
     public function getFullDescription(): ?string
     {
-        return $this->full_description;
+        return $this->fullDescription;
     }
 
-    public function setFullDescription(?string $full_description): self
+    public function setFullDescription(?string $fullDescription): self
     {
-        $this->full_description = $full_description;
+        $this->fullDescription = $fullDescription;
 
         return $this;
     }
