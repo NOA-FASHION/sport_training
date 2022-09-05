@@ -40,7 +40,16 @@ class PartenaireController extends AbstractController
         ]);
     }
 
-    #[Route('/partenaire/new','ingredient.new', methods:['GET' , 'POST'])]
+  /**
+     * controller create partenaire
+     *
+     * @param PartenaireRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
+
+    #[Route('/partenaire/new','partenaire.new', methods:['GET' , 'POST'])]
     public function new(Request $request,EntityManagerInterface $manager):Response
     {
         $partenaire = new Partenaire();
@@ -62,4 +71,55 @@ class PartenaireController extends AbstractController
         ]);
 
     }
+    /**
+     * controller edit partenaire
+     *
+     * @param PartenaireRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
+
+    #[Route('/partenaire/edition/{id}','ingredient.edit',methods:['GET', 'POST'])]
+    public function edit(PartenaireRepository $repository, int $id,Request $request,EntityManagerInterface $manager):Response
+    {
+        $partenaire =$repository->findOneBy(["id"=>$id]);
+        $form = $this->createForm(PartenaireType::class, $partenaire);
+        $form->handleRequest($request);
+        if($form->isSubmitted()  && $form->isValid()){
+            $partenaire = $form->getData();
+            $manager->persist($partenaire);
+            $manager->flush();
+            $this->addFlash(
+                'success',
+                'le partenaire à été modifier avec succes !'
+             );
+            return $this->redirectToRoute('partenaire.index');
+        }
+
+        return $this->render('pages/partenaire/edit.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * delete partenaires
+     *
+     * @param PartenaireRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
+
+    #[Route('/partenaire/suppression/{id}','partenaire.delete', methods :['GET'])]
+     public function delete(EntityManagerInterface $manager,Partenaire $partenaire):Response
+     {
+        $manager->remove($partenaire);
+        $manager->flush();
+        $this->addFlash(
+            'success',
+            'Votre ingrédient à été supprimer avec succes !'
+         );
+         return $this->redirectToRoute('app_ingredient');
+     }
 }

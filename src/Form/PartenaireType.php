@@ -141,16 +141,146 @@ class PartenaireType extends AbstractType
                     new Assert\NotBlank()
                 ]
             ])
-            ->add('membersRead')
-            ->add('membersWrite')
-            ->add('membersProduct')
-            ->add('membersPayment')
-            ->add('membersStat')
-            ->add('membersSubscription')
-            ->add('paymentSchedulesRead')
-            ->add('paymentSchedulesWrite')
-            ->add('paymentDaysRead')
-            ->add('paymentDayWrite')
+            ->add('membersRead', CheckboxType::class,[
+                'attr' =>[
+                    'class' =>'form-check-input',
+                ],
+                'required'=> false,
+                'label' => 'members_read',
+                'label_attr' =>[
+                    'class'=> 'form-check-label '
+                ],
+                'constraints' =>[
+                    new Assert\NotNull(),
+                   
+                ]
+            ])
+            ->add('membersWrite', CheckboxType::class,[
+                'attr' =>[
+                    'class' =>'form-check-input',
+                ],
+                'required'=> false,
+                'label' => 'members_write',
+                'label_attr' =>[
+                    'class'=> 'form-check-label '
+                ],
+                'constraints' =>[
+                    new Assert\NotNull(),
+                   
+                ]
+            ])
+            ->add('membersProduct', CheckboxType::class,[
+                'attr' =>[
+                    'class' =>'form-check-input',
+                ],
+                'required'=> false,
+                'label' => 'members_product',
+                'label_attr' =>[
+                    'class'=> 'form-check-label '
+                ],
+                'constraints' =>[
+                    new Assert\NotNull(),
+                   
+                ]
+            ])
+            ->add('membersPayment', CheckboxType::class,[
+                'attr' =>[
+                    'class' =>'form-check-input',
+                ],
+                'required'=> false,
+                'label' => 'members_payment',
+                'label_attr' =>[
+                    'class'=> 'form-check-label '
+                ],
+                'constraints' =>[
+                    new Assert\NotNull(),
+                   
+                ]
+            ])
+            ->add('membersStat', CheckboxType::class,[
+                'attr' =>[
+                    'class' =>'form-check-input',
+                ],
+                'required'=> false,
+                'label' => 'members_stat',
+                'label_attr' =>[
+                    'class'=> 'form-check-label '
+                ],
+                'constraints' =>[
+                    new Assert\NotNull(),
+                   
+                ]
+            ])
+            ->add('membersSubscription', CheckboxType::class,[
+                'attr' =>[
+                    'class' =>'form-check-input',
+                ],
+                'required'=> false,
+                'label' => 'members_subscription',
+                'label_attr' =>[
+                    'class'=> 'form-check-label '
+                ],
+                'constraints' =>[
+                    new Assert\NotNull(),
+                   
+                ]
+            ])
+            ->add('paymentSchedulesRead', CheckboxType::class,[
+                'attr' =>[
+                    'class' =>'form-check-input',
+                ],
+                'required'=> false,
+                'label' => 'members_schedules_read',
+                'label_attr' =>[
+                    'class'=> 'form-check-label '
+                ],
+                'constraints' =>[
+                    new Assert\NotNull(),
+                   
+                ]
+            ])
+            ->add('paymentSchedulesWrite', CheckboxType::class,[
+                'attr' =>[
+                    'class' =>'form-check-input',
+                ],
+                'required'=> false,
+                'label' => 'members_shedule_write',
+                'label_attr' =>[
+                    'class'=> 'form-check-label '
+                ],
+                'constraints' =>[
+                    new Assert\NotNull(),
+                   
+                ]
+            ])
+            ->add('paymentDaysRead', CheckboxType::class,[
+                'attr' =>[
+                    'class' =>'form-check-input',
+                ],
+                'required'=> false,
+                'label' => 'members_days_read',
+                'label_attr' =>[
+                    'class'=> 'form-check-label '
+                ],
+                'constraints' =>[
+                    new Assert\NotNull(),
+                   
+                ]
+            ])
+            ->add('paymentDayWrite', CheckboxType::class,[
+                'attr' =>[
+                    'class' =>'form-check-input',
+                ],
+                'required'=> false,
+                'label' => 'members_days_write',
+                'label_attr' =>[
+                    'class'=> 'form-check-label '
+                ],
+                'constraints' =>[
+                    new Assert\NotNull(),
+                   
+                ]
+            ])
             ->add('submit', SubmitType::class,[
                 'attr'=>[
                     'class' => 'btn btn-primary mt-4'
