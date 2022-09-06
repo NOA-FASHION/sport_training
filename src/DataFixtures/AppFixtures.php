@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use Faker\Generator;
+use App\Entity\Structure;
 use App\Entity\Partenaire;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -24,29 +25,54 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-
-        for ($i=0; $i < 10; $i++) { 
+            //partenaires
+            $partenaires=[];
+        for ($i=0; $i < 20; $i++) { 
         $partenaire = new Partenaire();
-        $partenaire->setName($this->faker->word());
-        $partenaire->setActive(false);
-        $partenaire->setShortDescription($this->faker->text(90));
-        $partenaire->setFullDescription($this->faker->text(200));
-        $partenaire->setLogoUrl($this->faker->word());
-        $partenaire->setDpo($this->faker->word());
-        $partenaire->setTechnicalContact($this->faker->word());
-        $partenaire->setCommercialContact($this->faker->word());
-        $partenaire->setMembersRead(false);
-        $partenaire->setMembersWrite(false);
-        $partenaire->setMembersProduct(false);
-        $partenaire->setMembersPayment(false);
-        $partenaire->setMembersStat(false);
-        $partenaire->setMembersSubscription(false);
-        $partenaire->setPaymentSchedulesRead(false);
-        $partenaire->setPaymentSchedulesWrite(false);
-        $partenaire->setPaymentDaysRead(false);
-        $partenaire->setPaymentDayWrite(false);
+        $partenaire->setName($this->faker->word())
+        ->setActive(false)
+        ->setShortDescription($this->faker->text(90))
+        ->setFullDescription($this->faker->text(200))
+        ->setLogoUrl($this->faker->word())
+        ->setDpo($this->faker->word())
+        ->setTechnicalContact($this->faker->word())
+        ->setCommercialContact($this->faker->word())
+        ->setMembersRead(false)
+        ->setMembersWrite(false)
+        ->setMembersProduct(false)
+        ->setMembersPayment(false)
+        ->setMembersStat(false)
+        ->setMembersSubscription(false)
+        ->setPaymentSchedulesRead(false)
+        ->setPaymentSchedulesWrite(false)
+        ->setPaymentDaysRead(false)
+        ->setPaymentDayWrite(false);
+
+        $partenaires[]=$partenaire;
         $manager->persist( $partenaire);
-        $manager->flush();
+       
         }
+    //structures
+        for ($i=0; $i < 10; $i++) { 
+            $partenaire = new Structure();
+            $partenaire->setNameStructure($this->faker->word())
+            ->setNameResponsable($this->faker->word())
+            ->setAdresseStructure($this->faker->text(50))
+            ->setActiveStructure(true)
+            ->setMembersRead(false)
+            ->setMembersWrite(false)
+            ->setMembersProduct(false)
+            ->setMembersPayment(false)
+            ->setMembersStistiquesRead(false)
+            ->setMembersSubscriptionRead(false)
+            ->setPaymentSchedulesRead(false)
+            ->setPaymentShedulesWrite(false)
+            ->setPaymentDaysRead(false)
+            ->setPaymentDaysWrite(false)
+            ->setPartenaire($partenaires[mt_rand(0,count($partenaires)-1)]);
+            $manager->persist( $partenaire);
+           
+            }
+            $manager->flush();
     }
 }

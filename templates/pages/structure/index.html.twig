@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Sport-training Partenaires
+  Sport-training structure
 {% endblock %}
 
 {% block body %}
-  {% if partenaires.items is not same as([]) %}
+  {# {% if structures.items is not same as([]) %} #}
     <div class="container">
       <h1>
-        Partenaires
+        Liste des Structures
       </h1>
-      <a href="{{ path('partenaire.new') }}" class="btn btn-primary mb-4">
-        Créer un partenaire
+      <a href="#" class="btn btn-primary mb-4">
+        Créer une structure
       </a>
 
       {% for message in app.flashes('success') %}
@@ -22,17 +22,16 @@
 
       <div class="container">
         <div class="row">
-          {% for partenaire in partenaires %}
-        
+          {% for structure in structures %}
             <div class="col-4">
               <div class="card text-white bg-secondary mb-3"
                 style="max-width: 20rem;">
                 <div class="row">
                   <div class="mx-4 col card-header">
-                    Nom partenaire: {{ partenaire.name }}
-                    <a href="{{ path('partenaire.edit',{id : partenaire.id}) }}" class="btn btn-info">edit</a>
+                    Nom structure: {{ structure.nameStructure }}
+                    {# <a href="{{ path('partenaire.edit',{id : structure.id}) }}" class="btn btn-info">edit</a> #}
                     <div class="row my-4">
-                      {% if partenaire.active %}
+                      {% if structure.activeStructure %}
                         <div class="col form-check form-switch">
                           <input class="form-check-input"
                             type="checkbox"
@@ -54,33 +53,31 @@
                           </label>
                         </div>
                       {% endif %}
-                      <a href="{{ path('partenaire.delete',{id : partenaire.id}) }}" class="col btn btn-info">delete</a>
+                      {# <a href="{{ path('partenaire.delete',{id : partenaire.id}) }}" class="col btn btn-info">delete</a> #}
                     </div>
                   </div>
                 </div>
-                  <a href="{{ path('structure.index',{id : partenaire.id}) }}" class="btn btn-info">
 
                 <div class="card-body">
                   <h4 class="card-title">
-                    {{ partenaire.shortDescription }}
+                    {{ structure.nameResponsable }}
                   </h4>
                   <p class="card-text">
-                    {{ partenaire.fullDescription }}
+                    {{ structure.adresseStructure }}
                   </p>
                 </div>
-                </a>
               </div>
             </div>
           {% endfor %}
         </div>
       </div>
     </div>
-    <div class="navigation d-flex justify-content-center mt-4">
-      {{ knp_pagination_render(partenaires) }}
-    </div>
-  {% else %}
+    {# <div class="navigation d-flex justify-content-center mt-4">
+      {{ knp_pagination_render(structure) }}
+    </div> #}
+  {# {% else %}
     <h4>
       Il n'y a pas de partenairescomposer require knplabs/knp-paginator-bundle
     </h4>
-  {% endif %}
+  {% endif %} #}
 {% endblock %}

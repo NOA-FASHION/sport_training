@@ -27,7 +27,7 @@ class PartenaireController extends AbstractController
     #[Route('/partenaire', name: 'partenaire.index')]
     public function index(PartenaireRepository $repository,PaginatorInterface $paginator,Request $request): Response
     {
-        $partenaires = $repository->findAll();
+      
 
 
         $partenaires  = $paginator->paginate(
@@ -80,7 +80,7 @@ class PartenaireController extends AbstractController
      * @return Response
      */
 
-    #[Route('/partenaire/edition/{id}','ingredient.edit',methods:['GET', 'POST'])]
+    #[Route('/partenaire/edition/{id}','partenaire.edit',methods:['GET', 'POST'])]
     public function edit(PartenaireRepository $repository, int $id,Request $request,EntityManagerInterface $manager):Response
     {
         $partenaire =$repository->findOneBy(["id"=>$id]);
@@ -120,6 +120,6 @@ class PartenaireController extends AbstractController
             'success',
             'Votre ingrédient à été supprimer avec succes !'
          );
-         return $this->redirectToRoute('app_ingredient');
+         return $this->redirectToRoute('partenaire.index');
      }
 }
