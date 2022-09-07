@@ -1,0 +1,159 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ <div class="container">
+    <h1>
+      Création d'une structure
+    </h1>
+
+
+    {{ form_start(form) }}
+
+    <div class="form-group">
+      {{ form_label(form.nameStructure) }}
+      {{ form_widget(form.nameStructure) }}
+      <div class="form-error">
+        {{ form_errors(form.nameStructure) }}
+      </div>
+    </div>
+
+     <div class="form-group">
+      {{ form_label(form.nameResponsable) }}
+      {{ form_widget(form.nameResponsable) }}
+      <div class="form-error">
+        {{ form_errors(form.nameResponsable) }}
+      </div>
+    </div>
+
+
+
+     <div class="form-group">
+      {{ form_label(form.adresseStructure) }}
+      {{ form_widget(form.adresseStructure) }}
+      <div class="form-error">
+        {{ form_errors(form.adresseStructure) }}
+      </div>
+    </div>
+
+   <div class="form-check form-switch">
+      {{ form_label(form.activeStructure) }}
+      {{ form_widget(form.activeStructure) }}
+      <div class="form-error">
+        {{ form_errors(form.activeStructure) }}
+      </div>
+    </div>
+
+
+     {% if partenaires.membersRead %}
+      <div class="form-check form-switch">
+      {{ form_label(form.membersRead) }}
+      {{ form_widget(form.membersRead) }}
+      <div class="form-error">
+        {{ form_errors(form.membersRead) }}
+      </div>
+    </div>
+    
+      {% endif %}
+
+  
+
+ {% if partenaires.membersWrite %}
+ <div class="form-check form-switch">
+      {{ form_label(form.membersWrite) }}
+      {{ form_widget(form.membersWrite) }}
+      <div class="form-error">
+        {{ form_errors(form.membersWrite) }}
+      </div>
+    </div>
+   {% endif %}
+
+ {% if partenaires.membersProduct %}
+  <div class="form-check form-switch">
+      {{ form_label(form.membersProduct) }}
+      {{ form_widget(form.membersProduct) }}
+      <div class="form-error">
+        {{ form_errors(form.membersProduct) }}
+      </div>
+    </div>
+       {% endif %}
+
+ {% if partenaires.membersPayment %}
+     <div class="form-check form-switch">
+      {{ form_label(form.membersPayment) }}
+      {{ form_widget(form.membersPayment) }}
+      <div class="form-error">
+        {{ form_errors(form.membersPayment) }}
+      </div>
+    </div>
+       {% endif %}
+
+ {% if partenaires.membersStat %}
+  <div class="form-check form-switch">
+      {{ form_label(form.membersStistiquesRead) }}
+      {{ form_widget(form.membersStistiquesRead) }}
+      <div class="form-error">
+        {{ form_errors(form.membersStistiquesRead) }}
+      </div>
+    </div>
+       {% endif %}
+
+ {% if partenaires.membersSubscription %}
+ <div class="form-check form-switch">
+      {{ form_label(form.membersSubscriptionRead) }}
+      {{ form_widget(form.membersSubscriptionRead) }}
+      <div class="form-error">
+        {{ form_errors(form.membersSubscriptionRead) }}
+      </div>
+    </div>
+       {% endif %}
+
+ {% if partenaires.paymentSchedulesRead %}
+  <div class="form-check form-switch">
+      {{ form_label(form.paymentSchedulesRead) }}
+      {{ form_widget(form.paymentSchedulesRead) }}
+      <div class="form-error">
+        {{ form_errors(form.paymentSchedulesRead) }}
+      </div>
+    </div>
+{% endif %}
+ {% if partenaires.paymentSchedulesWrite %}
+      <div class="form-check form-switch">
+      {{ form_label(form.paymentShedulesWrite) }}
+      {{ form_widget(form.paymentShedulesWrite) }}
+      <div class="form-error">
+        {{ form_errors(form.paymentShedulesWrite) }}
+      </div>
+    </div>
+       {% endif %}
+
+ {% if partenaires.paymentDaysRead %}
+     <div class="form-check form-switch">
+      {{ form_label(form.paymentDaysRead) }}
+      {{ form_widget(form.paymentDaysRead) }}
+      <div class="form-error">
+        {{ form_errors(form.paymentDaysRead) }}
+      </div>
+    </div>
+       {% endif %}
+
+ {% if partenaires.paymentDayWrite %}
+     <div class="form-check form-switch">
+      {{ form_label(form.paymentDaysWrite) }}
+      {{ form_widget(form.paymentDaysWrite) }}
+      <div class="form-error">
+        {{ form_errors(form.paymentDaysWrite) }}
+      </div>
+    </div>
+       {% endif %}
+
+    <div class="form-check ">
+      {{ form_label(form.submit) }}
+      {{ form_widget(form.submit) }}
+     
+    </div>
+  
+  
+
+    {{ form_end(form, {'render_rest': false}) }} 
+ </div>
+{% endblock %}

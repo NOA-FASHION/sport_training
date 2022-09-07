@@ -10,9 +10,9 @@
       <h1>
         Liste des Structures
       </h1>
-      <a href="#" class="btn btn-primary mb-4">
-        Créer une structure
-      </a>
+        
+      <a href="{{ path('structure.new',{id : id}) }}" class="btn btn-info">Créer une structure</a>
+   
 
       {% for message in app.flashes('success') %}
         <div class="alert alert-success mt-4">
