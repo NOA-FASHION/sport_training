@@ -44,7 +44,7 @@ class StructureController extends AbstractController
         ]);
     }
     #[Route('/structure/new/{id}','structure.new',methods:['GET', 'POST'])]
-    public function new(PartenaireRepository $repository, Request $request, EntityManagerInterface $manager,$id):Response
+    public function new(PartenaireRepository $repository, Request $request, EntityManagerInterface $manager,int $id):Response
     {
 
         $partenaires =$repository->findOneBy(["id"=>$id]);
@@ -71,4 +71,31 @@ class StructureController extends AbstractController
             'partenaires' => $partenaires
         ]);
     }
+
+
+    #[Route('/structure/edition/{id}/{id1}','structure.edit',methods:['GET', 'POST'])]
+    public function edit(PartenaireRepository $repository1,StructureRepository $repository, int $id, int $id1,Request $request,EntityManagerInterface $manager):Response
+    {
+        $partenaires =$repository1->findOneBy(["id"=>$id]);
+        $structure =$repository->findOneBy(["id"=>$id1]);
+        $form = $this->createForm(StructureType::class, $structure);
+        $form->handleRequest($request);
+        if($form->isSubmitted()  && $form->isValid()){
+            $structure = $form->getData();
+            $manager->persist($structure);
+            $manager->flush();
+            // $this->addFlash(
+            //     'success',
+            //     'la structure à été modifier avec succes !'
+            //  );
+            // return $this->redirectToRoute('partenaire.index');
+        }
+
+        return $this->render('pages/structure/edit.html.twig',[
+            'form' => $form->createView(),
+            'partenaires' => $partenaires
+
+        ]);
+    }
+
 }
