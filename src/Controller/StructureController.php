@@ -80,6 +80,7 @@ class StructureController extends AbstractController
         $structure =$repository->findOneBy(["id"=>$id1]);
         $form = $this->createForm(StructureType::class, $structure);
         $form->handleRequest($request);
+        
         if($form->isSubmitted()  && $form->isValid()){
             $structure = $form->getData();
             $manager->persist($structure);
