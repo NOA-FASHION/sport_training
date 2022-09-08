@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\User;
 use Faker\Generator;
 use App\Entity\Structure;
 use App\Entity\Partenaire;
@@ -25,6 +26,23 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+
+        
+         //users
+        $users = [];
+        for ($i=0; $i < 10; $i++) { 
+            $user = new User();
+            $user->setFullName($this->faker->name())
+            ->setEmail($this->faker->email())
+            ->setRoles(['ROLE_USER'])
+            ->setPlainPassword('password');
+           $users[]=$user;
+            
+            $manager->persist($user);
+
+        }
+
+
             //partenaires
             $partenaires=[];
         for ($i=0; $i < 20; $i++) { 
