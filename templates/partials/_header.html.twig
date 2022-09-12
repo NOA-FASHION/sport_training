@@ -33,6 +33,11 @@
             admin
           </a>
         </li>
+          <li class="nav-item">
+          <a class="nav-link" href="{{ path('espace.partenaire') }}">
+            Espace partenaire
+          </a>
+        </li>
         {# <li class="nav-item">
           <a class="nav-link" href="{{ path('recipe.index') }}">Mes recettes</a>
         </li> #}
@@ -53,23 +58,23 @@
             aria-expanded="false">
             {{app.user.fullname}}
           </a>
-          {# <div class="dropdown-menu">
-            <a class="dropdown-item" href="{{ path('user.edit',{id : app.user.id}) }}">Modifier informations</a>
-            <a class="dropdown-item" href="{{ path('user.edit.password',{id : app.user.id}) }}">Modifier mot de passe</a>
-            <div class="dropdown-divider"></div>
+          <div class="dropdown-menu">
+            {# <a class="dropdown-item" href="{{ path('user.edit',{id : app.user.id}) }}">Modifier informations</a>
+            <a class="dropdown-item" href="{{ path('user.edit.password',{id : app.user.id}) }}">Modifier mot de passe</a> #}
+            {# <div class="dropdown-divider"></div> #}
             <a class="dropdown-item" href="{{ path('security.logout') }}">Déconnexion</a>
             
-          </div> #}
+          </div>
             
         </li>
         {% else %}
         
           <li class="nav-item">
-           {# <a class="nav-link text-success" href="{{ path('security.login') }}">connexion</a> #}
+           <a class="nav-link text-success" href="{{ path('security.login') }}">connexion</a>
         </li>
-        <li class="nav-item">
-           {# <a class="nav-link text-success" href="{{ path('security.registration') }}">logout</a> #}
-        </li>
+        {# <li class="nav-item">
+           <a class="nav-link text-success" href="{{ path('security.registration') }}">logout</a>
+        </li> #}
      
         {% endif %}
 </ul>

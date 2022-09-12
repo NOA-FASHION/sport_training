@@ -41,6 +41,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotNull()]
     private ?string $password = 'password';
 
+    #[ORM\OneToOne(inversedBy: 'userPartenaire', cascade: ['persist', 'remove'])]
+    private ?Partenaire $partenaire = null;
+
     
     public function getId(): ?int
     {
@@ -143,6 +146,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getPartenaire(): ?Partenaire
+    {
+        return $this->partenaire;
+    }
+
+    public function setPartenaire(?Partenaire $partenaire): self
+    {
+        $this->partenaire = $partenaire;
+
+        return $this;
     }
 
    

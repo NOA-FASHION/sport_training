@@ -112,7 +112,7 @@ class UserController extends AbstractController
        $manager->flush();
        $this->addFlash(
            'success',
-           'Votre ingrédient à été supprimer avec succes !'
+           'Votre utilisateur à été supprimer avec succes !'
         );
         return $this->redirectToRoute('user.index');
     }

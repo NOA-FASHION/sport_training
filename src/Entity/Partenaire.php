@@ -80,6 +80,9 @@ class Partenaire
     #[ORM\OneToMany(mappedBy: 'partenaire', targetEntity: Structure::class, orphanRemoval: true)]
     private Collection $structures;
 
+    #[ORM\OneToOne(mappedBy: 'partenaire', cascade: ['persist', 'remove'])]
+    private ?User $userPartenaire = null;
+
     public function __construct()
     {
         $this->structures = new ArrayCollection();
@@ -332,6 +335,28 @@ class Partenaire
                 $structure->setPartenaire(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUserPartenaire(): ?User
+    {
+        return $this->userPartenaire;
+    }
+
+    public function setUserPartenaire(?User $userPartenaire): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($userPartenaire === null && $this->userPartenaire !== null) {
+            $this->userPartenaire->setPartenaire(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($userPartenaire !== null && $userPartenaire->getPartenaire() !== $this) {
+            $userPartenaire->setPartenaire($this);
+        }
+
+        $this->userPartenaire = $userPartenaire;
 
         return $this;
     }

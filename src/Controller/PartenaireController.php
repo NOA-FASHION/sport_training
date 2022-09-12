@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Partenaire;
 use App\Form\PartenaireType;
+use App\Form\RegistrationType;
+use App\Repository\UserRepository;
 use App\Repository\PartenaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -122,4 +125,52 @@ class PartenaireController extends AbstractController
          );
          return $this->redirectToRoute('partenaire.index');
      }
+
+    #[Route('/partenaire/new/user/{id}','partenaire.new.user', methods:['GET','POST'] )]
+    public function registration(PartenaireRepository $repository,Request $request, EntityManagerInterface $manager,$id):Response
+    {
+        $partenaire =$repository->findOneBy(["id"=>$id]);
+        $user = new User();
+        $user->setRoles(['ROLE_USER']);
+        $form = $this->createForm(RegistrationType::class,$user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()  && $form->isValid()){
+            $user = $form->getData();
+            $user->setPartenaire($partenaire);
+            $this->addFlash(
+                'success',
+                'Votre compte à été crée avec succes !'
+             );
+            $manager->persist($user);
+            $manager->flush();
+
+            return $this->redirectToRoute('partenaire.index');
+           
+        }
+        return $this->render('pages/partenaire/registration.html.twig',[
+            'form'=>$form->createView(),
+            'partenaire'=>$partenaire
+        ]);
+    }
+
+    #[Route('/partenaire/user/{id}', name: 'partenaire.user.index')]
+    public function indexPartenaireUser(PartenaireRepository $repository1,UserRepository $repository,PaginatorInterface $paginator,Request $request,$id): Response
+    {
+        $partenaire =$repository1->findOneBy(["id"=>$id]);
+        $idUser = $partenaire->getUserPartenaire();
+        // dd($idUser );
+        if($idUser === null){
+            $user = null;
+        }else{
+            $user =$repository->findOneBy(["id"=>$idUser]);
+        }
+        
+    
+        return $this->render('pages/partenaire/user.html.twig', [
+            'user' => $user,
+            'id'=>$id,
+            'partenaire'=>$partenaire
+        ]);
+    }
+ 
 }

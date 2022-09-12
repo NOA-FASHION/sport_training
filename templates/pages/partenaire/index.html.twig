@@ -10,9 +10,13 @@
       <h1>
         Partenaires
       </h1>
-      <a href="{{ path('partenaire.new') }}" class="btn btn-primary mb-4">
-        Créer un partenaire
-      </a>
+      <div class="row justify-content-between">
+        <div class="col-4">
+          <a href="{{ path('partenaire.new') }}" class="btn btn-primary mb-4">
+            Créer un partenaire
+          </a>
+        </div>
+      </div>
 
       {% for message in app.flashes('success') %}
         <div class="alert alert-success mt-4">
@@ -23,14 +27,35 @@
       <div class="container">
         <div class="row">
           {% for partenaire in partenaires %}
-        
             <div class="col-4">
+              <a href="{{
+                path(
+                  'partenaire.user.index',
+                  {
+                    id: partenaire.id
+                  }
+                )
+                }}"
+                class="btn btn-primary ">
+                Responsable associé
+              </a>
+
               <div class="card text-white bg-secondary mb-3"
                 style="max-width: 20rem;">
                 <div class="row">
                   <div class="mx-4 col card-header">
                     Nom partenaire: {{ partenaire.name }}
-                    <a href="{{ path('partenaire.edit',{id : partenaire.id}) }}" class="btn btn-info">edit</a>
+                    <a href="{{
+                      path(
+                        'partenaire.edit',
+                        {
+                          id: partenaire.id
+                        }
+                      )
+                      }}"
+                      class="btn btn-info">
+                      edit
+                    </a>
                     <div class="row my-4">
                       {% if partenaire.active %}
                         <div class="col form-check form-switch">
@@ -54,20 +79,37 @@
                           </label>
                         </div>
                       {% endif %}
-                      <a href="{{ path('partenaire.delete',{id : partenaire.id}) }}" class="col btn btn-info">delete</a>
+                      <a href="{{
+                        path(
+                          'partenaire.delete',
+                          {
+                            id: partenaire.id
+                          }
+                        )
+                        }}"
+                        class="col btn btn-info">
+                        delete
+                      </a>
                     </div>
                   </div>
                 </div>
-                  <a href="{{ path('structure.index',{id : partenaire.id}) }}" class="btn btn-info">
-
-                <div class="card-body">
-                  <h4 class="card-title">
-                    {{ partenaire.shortDescription }}
-                  </h4>
-                  <p class="card-text">
-                    {{ partenaire.fullDescription }}
-                  </p>
-                </div>
+                <a href="{{
+                  path(
+                    'structure.index',
+                    {
+                      id: partenaire.id
+                    }
+                  )
+                  }}"
+                  class="btn btn-info">
+                  <div class="card-body">
+                    <h4 class="card-title">
+                      {{ partenaire.shortDescription }}
+                    </h4>
+                    <p class="card-text">
+                      {{ partenaire.fullDescription }}
+                    </p>
+                  </div>
                 </a>
               </div>
             </div>
