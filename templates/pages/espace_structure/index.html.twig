@@ -1,0 +1,353 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Sport-training structure
+{% endblock %}
+
+{% block body %}
+  {# {% if partenaires.items is not same as([]) %} #}
+  
+    {% if partenaire is not null %}
+   <h1>DROITS STRUCTURES</h1>
+
+   <div class="container">
+
+        <div class="row">
+          
+          
+            <div class="col-4">
+              <div class="card text-white bg-warning mb-3"
+                style="max-width: 20rem;">
+                <div class="row">
+                  <div class="mx-4 col card-header">
+                    Nom structure: {{ structure.nameStructure }}
+            
+                    <div class=" my-4">
+                      {% if structure.activeStructure %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckChecked"
+                            checked="" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckChecked">
+                            Activation
+                          </label>
+                        </div>
+                      {% else %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox"
+                            id="flexSwitchCheckDefault" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckDefault">
+                            Activation
+                          </label>
+                        </div>
+                      {% endif %}
+                      {# <a href="{{ path('partenaire.delete',{id : partenaire.id}) }}" class="col btn btn-info">delete</a> #}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <h4 class="card-title">
+                  responsable :   {{ structure.nameResponsable }}
+                  </h4>
+                  <p class="card-text">
+                   adresse : {{ structure.adresseStructure }}
+                  </p>
+
+                {% if partenaire.membersRead %}
+                
+                  <div class="row my-1">
+                      {% if structure.membersRead %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckChecked"
+                            checked="" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckChecked">
+                            membersRead
+                          </label>
+                        </div>
+                      {% else %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckDefault" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckDefault">
+                            membersRead
+                          </label>
+                        </div>
+                      {% endif %}
+                      </div>
+                      {% endif %}
+
+
+                      {% if partenaire.membersWrite %}
+                       <div class="row my-1">
+                      {% if structure.membersWrite %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckChecked"
+                            checked="" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckChecked">
+                            membersWrite
+                          </label>
+                        </div>
+                      {% else %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckDefault" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckDefault">
+                            membersWrite
+                          </label>
+                        </div>
+                      {% endif %}
+                      </div>
+                      {% endif %}
+
+
+                    
+                    {% if partenaire.membersProduct %}
+                       <div class="row my-1">
+                      {% if structure.membersProduct %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckChecked"
+                            checked="" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckChecked">
+                            membersProduct
+                          </label>
+                        </div>
+                      {% else %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckDefault" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckDefault">
+                            membersProduct
+                          </label>
+                        </div>
+                      {% endif %}
+                      </div>
+                      {% endif %}
+
+
+                  {% if partenaire.membersPayment %}
+                       <div class="row my-1">
+                      {% if structure.membersPayment %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckChecked"
+                            checked="" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckChecked">
+                            membersPayment
+                          </label>
+                        </div>
+                      {% else %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckDefault" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckDefault">
+                            membersPayment
+                          </label>
+                        </div>
+                      {% endif %}
+                      </div>
+                    {% endif %}
+
+
+                        {% if partenaire.membersStat %}
+                       <div class="row my-1">
+                      {% if structure.membersStistiquesRead %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckChecked"
+                            checked="" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckChecked">
+                            membersStat
+                          </label>
+                        </div>
+                      {% else %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckDefault" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckDefault">
+                            membersStat
+                          </label>
+                        </div>
+                      {% endif %}
+                      </div>
+                      {% endif %}
+
+
+
+
+                      {% if partenaire.membersSubscription %}
+                       <div class="row my-1">
+                      {% if structure.membersSubscriptionRead %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckChecked"
+                            checked="" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckChecked">
+                            membersSubscription
+                          </label>
+                        </div>
+                      {% else %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckDefault" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckDefault">
+                            membersSubscription
+                          </label>
+                        </div>
+                      {% endif %}
+                      </div>
+                       {% endif %}
+
+
+                      {% if partenaire.paymentSchedulesRead %}
+                       <div class="row my-1">
+                      {% if structure.paymentSchedulesRead %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckChecked"
+                            checked="" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckChecked">
+                            paymentSchedulesRead
+                          </label>
+                        </div>
+                      {% else %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckDefault" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckDefault">
+                            paymentSchedulesRead
+                          </label>
+                        </div>
+                      {% endif %}
+                      </div>
+                      {% endif %}
+
+
+                        {% if partenaire.paymentSchedulesWrite %}
+                       <div class="row my-1">
+                      {% if structure.paymentShedulesWrite %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckChecked"
+                            checked="" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckChecked">
+                            paymentSchedulesWrite
+                          </label>
+                        </div>
+                      {% else %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckDefault" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckDefault">
+                            paymentSchedulesWrite
+                          </label>
+                        </div>
+                      {% endif %}
+                      </div>
+                      {% endif %}
+
+
+                      {% if partenaire.paymentDaysRead %}
+                       <div class="row my-1">
+                      {% if structure.paymentDaysRead %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled 
+                            id="flexSwitchCheckChecked"
+                            checked="" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckChecked">
+                            paymentDaysRead
+                          </label>
+                        </div>
+                      {% else %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckDefault" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckDefault">
+                            paymentDaysRead
+                          </label>
+                        </div>
+                      {% endif %}
+                      </div>
+                      {% endif %}
+
+                      {% if partenaire.paymentDayWrite %}
+                       <div class="row my-1">
+                      {% if structure.paymentDaysWrite %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckChecked"
+                            checked="" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckChecked">
+                            paymentDayWrite
+                          </label>
+                        </div>
+                      {% else %}
+                        <div class="col form-check form-switch">
+                          <input class="form-check-input"
+                            type="checkbox" disabled
+                            id="flexSwitchCheckDefault" />
+                          <label class="form-check-label"
+                            for="flexSwitchCheckDefault">
+                            paymentDayWrite
+                          </label>
+                        </div>
+                      {% endif %}
+                      </div>    
+                       {% endif %}
+                      </div>
+            </div> </div>
+      
+       
+      </div>
+    </div>
+  {% else %}
+    <h4>
+      Il n'y a pas de structure
+    </h4>
+  {% endif %}
+{% endblock %}

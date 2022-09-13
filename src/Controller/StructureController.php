@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Structure;
 use App\Form\StructureType;
+use App\Form\RegistrationType;
+use App\Repository\UserRepository;
 use App\Repository\StructureRepository;
 use App\Repository\PartenaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -96,6 +99,53 @@ class StructureController extends AbstractController
             'form' => $form->createView(),
             'partenaires' => $partenaires
 
+        ]);
+    }
+
+    #[Route('/structure/user/{id}', name: 'structure.user.index')]
+    public function indexPartenaireUser(StructureRepository $repository1,UserRepository $repository,PaginatorInterface $paginator,Request $request,$id): Response
+    {
+        $structure =$repository1->findOneBy(["id"=>$id]);
+        $idUser = $structure->getUserStructure();
+        // dd($idUser );
+        if($idUser === null){
+            $user = null;
+        }else{
+            $user =$repository->findOneBy(["id"=>$idUser]);
+        }
+        
+    
+        return $this->render('pages/structure/user.html.twig', [
+            'user' => $user,
+            'id'=>$id,
+            'structure'=>$structure
+        ]);
+    }
+
+    #[Route('/structure/new/user/{id}','structure.new.user', methods:['GET','POST'] )]
+    public function registration(StructureRepository $repository,Request $request, EntityManagerInterface $manager,$id):Response
+    {
+        $structure =$repository->findOneBy(["id"=>$id]);
+        $user = new User();
+        $user->setRoles(['ROLE_USER']);
+        $form = $this->createForm(RegistrationType::class,$user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()  && $form->isValid()){
+            $user = $form->getData();
+            $user->setStructure($structure);
+            $this->addFlash(
+                'success',
+                'Votre compte à été crée avec succes !'
+             );
+            $manager->persist($user);
+            $manager->flush();
+
+            return $this->redirectToRoute('partenaire.index');
+           
+        }
+        return $this->render('pages/structure/registration.html.twig',[
+            'form'=>$form->createView(),
+            'structure'=>$structure
         ]);
     }
 

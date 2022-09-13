@@ -373,6 +373,7 @@
 
         <div class="row">
           {% for structure in structures %}
+          
             <div class="col-4">
               <div class="card text-white bg-warning mb-3"
                 style="max-width: 20rem;">
@@ -380,7 +381,7 @@
                   <div class="mx-4 col card-header">
                     Nom structure: {{ structure.nameStructure }}
             
-                    <div class="row my-4">
+                    <div class=" my-4">
                       {% if structure.activeStructure %}
                         <div class="col form-check form-switch">
                           <input class="form-check-input"
@@ -698,9 +699,9 @@
                       </div>    
                        {% endif %}
                       </div>
-            </div>
+            </div> </div>
           {% endfor %}
-        </div>
+       
       </div>
     </div>
   {% else %}

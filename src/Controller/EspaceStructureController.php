@@ -2,21 +2,19 @@
 
 namespace App\Controller;
 
-use App\Entity\Partenaire;
-use App\Repository\PartenaireRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Repository\StructureRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class EspacePartenaireController extends AbstractController
+class EspaceStructureController extends AbstractController
 {
-    #[Route('/espace/partenaire', name: 'espace.partenaire')]
+
+    #[Route('/espace/structure', name: 'espace.structure')]
     #[Security("is_granted('ROLE_USER') and user === partenaire.getUserPartenaire()")]
-    public function index(PartenaireRepository $repository,Request $request): Response
+    public function index(StructureRepository $repository,Request $request): Response
     {
         if(!$this->getUser()){
 
@@ -27,11 +25,12 @@ class EspacePartenaireController extends AbstractController
         * @var User
          */
         $user=$this->getUser();
-        $partenaire =$user->getPartenaire();
-        $structure = $partenaire->getStructures();       
-         return $this->render('pages/espace_partenaire/index.html.twig', [
+        
+        $structure = $user->getStructure();       
+        $partenaire =$structure->getPartenaire();
+         return $this->render('pages/espace_structure/index.html.twig', [
             'partenaire' => $partenaire,
-            'structures'=> $structure
+            'structure'=> $structure
         ]);
     }
 }
