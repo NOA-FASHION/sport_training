@@ -35,12 +35,12 @@ class PartenaireType extends AbstractType
             ])
             ->add('active', CheckboxType::class,[
                 'attr' =>[
-                    'class' =>'form-check-input',
+                    'class' =>'form-check-input fs-6',
                 ],
                 'required'=> false,
                 'label' => 'Activation',
                 'label_attr' =>[
-                    'class'=> 'form-check-label '
+                    'class'=> 'badge bg-primary fs-6 mr-5'
                 ],
                 'constraints' =>[
                     new Assert\NotNull(),
@@ -143,12 +143,12 @@ class PartenaireType extends AbstractType
             ])
             ->add('membersRead', CheckboxType::class,[
                 'attr' =>[
-                    'class' =>'form-check-input',
+                    'class' =>'form-check-input fs-6',
                 ],
                 'required'=> false,
                 'label' => 'members_read',
                 'label_attr' =>[
-                    'class'=> 'form-check-label '
+                    'class'=> 'badge bg-primary mr-5 fs-6'
                 ],
                 'constraints' =>[
                     new Assert\NotNull(),
@@ -157,12 +157,12 @@ class PartenaireType extends AbstractType
             ])
             ->add('membersWrite', CheckboxType::class,[
                 'attr' =>[
-                    'class' =>'form-check-input',
+                    'class' =>'form-check-input fs-6',
                 ],
                 'required'=> false,
                 'label' => 'members_write',
                 'label_attr' =>[
-                    'class'=> 'form-check-label '
+                    'class'=> 'badge bg-primary mr-5 fs-6'
                 ],
                 'constraints' =>[
                     new Assert\NotNull(),
@@ -171,12 +171,12 @@ class PartenaireType extends AbstractType
             ])
             ->add('membersProduct', CheckboxType::class,[
                 'attr' =>[
-                    'class' =>'form-check-input',
+                    'class' =>'form-check-input fs-6',
                 ],
                 'required'=> false,
                 'label' => 'members_product',
                 'label_attr' =>[
-                    'class'=> 'form-check-label '
+                    'class'=> 'badge bg-primary mr-5 fs-6'
                 ],
                 'constraints' =>[
                     new Assert\NotNull(),
@@ -185,12 +185,12 @@ class PartenaireType extends AbstractType
             ])
             ->add('membersPayment', CheckboxType::class,[
                 'attr' =>[
-                    'class' =>'form-check-input',
+                    'class' =>'form-check-input fs-6',
                 ],
                 'required'=> false,
                 'label' => 'members_payment',
                 'label_attr' =>[
-                    'class'=> 'form-check-label '
+                    'class'=> 'badge bg-primary mr-5 fs-6'
                 ],
                 'constraints' =>[
                     new Assert\NotNull(),
@@ -199,12 +199,12 @@ class PartenaireType extends AbstractType
             ])
             ->add('membersStat', CheckboxType::class,[
                 'attr' =>[
-                    'class' =>'form-check-input',
+                    'class' =>'form-check-input fs-6',
                 ],
                 'required'=> false,
                 'label' => 'members_stat',
                 'label_attr' =>[
-                    'class'=> 'form-check-label '
+                    'class'=> 'badge bg-primary mr-5 fs-6'
                 ],
                 'constraints' =>[
                     new Assert\NotNull(),
@@ -213,12 +213,12 @@ class PartenaireType extends AbstractType
             ])
             ->add('membersSubscription', CheckboxType::class,[
                 'attr' =>[
-                    'class' =>'form-check-input',
+                    'class' =>'form-check-input fs-6',
                 ],
                 'required'=> false,
                 'label' => 'members_subscription',
                 'label_attr' =>[
-                    'class'=> 'form-check-label '
+                    'class'=> 'badge bg-primary mr-5 fs-6'
                 ],
                 'constraints' =>[
                     new Assert\NotNull(),
@@ -227,12 +227,12 @@ class PartenaireType extends AbstractType
             ])
             ->add('paymentSchedulesRead', CheckboxType::class,[
                 'attr' =>[
-                    'class' =>'form-check-input',
+                    'class' =>'form-check-input fs-6',
                 ],
                 'required'=> false,
-                'label' => 'members_schedules_read',
+                'label' => 'payment_schedules_read',
                 'label_attr' =>[
-                    'class'=> 'form-check-label '
+                    'class'=> 'badge bg-primary mr-5 fs-6'
                 ],
                 'constraints' =>[
                     new Assert\NotNull(),
@@ -241,12 +241,12 @@ class PartenaireType extends AbstractType
             ])
             ->add('paymentSchedulesWrite', CheckboxType::class,[
                 'attr' =>[
-                    'class' =>'form-check-input',
+                    'class' =>'form-check-input fs-6',
                 ],
                 'required'=> false,
-                'label' => 'members_shedule_write',
+                'label' => 'payment_shedule_write',
                 'label_attr' =>[
-                    'class'=> 'form-check-label '
+                    'class'=> 'badge bg-primary mr-5 fs-6'
                 ],
                 'constraints' =>[
                     new Assert\NotNull(),
@@ -255,12 +255,12 @@ class PartenaireType extends AbstractType
             ])
             ->add('paymentDaysRead', CheckboxType::class,[
                 'attr' =>[
-                    'class' =>'form-check-input',
+                    'class' =>'form-check-input fs-6',
                 ],
                 'required'=> false,
-                'label' => 'members_days_read',
+                'label' => 'payment_days_read',
                 'label_attr' =>[
-                    'class'=> 'form-check-label '
+                    'class'=> 'badge bg-primary mr-5 fs-6'
                 ],
                 'constraints' =>[
                     new Assert\NotNull(),
@@ -269,12 +269,12 @@ class PartenaireType extends AbstractType
             ])
             ->add('paymentDayWrite', CheckboxType::class,[
                 'attr' =>[
-                    'class' =>'form-check-input',
+                    'class' =>'form-check-input fs-6',
                 ],
                 'required'=> false,
-                'label' => 'members_days_write',
+                'label' => 'payment_days_write',
                 'label_attr' =>[
-                    'class'=> 'form-check-label '
+                    'class'=> 'badge bg-primary mr-5 fs-6'
                 ],
                 'constraints' =>[
                     new Assert\NotNull(),

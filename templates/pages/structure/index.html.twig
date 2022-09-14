@@ -6,84 +6,114 @@
 
 {% block body %}
   {# {% if structures.items is not same as([]) %} #}
-    <div class="container">
-      <h1>
-        Liste des Structures
+  <div class="container">
+    <div class="card my-3">
+      <h1 class="card-header">
+        Liste des structures
       </h1>
-        
-      <a href="{{ path('structure.new',{id : id}) }}" class="btn btn-info m-4">Créer une structure</a>
-   
-
-      {% for message in app.flashes('success') %}
-        <div class="alert alert-success mt-4">
-          {{ message }}
-        </div>
-      {% endfor %}
-
-      <div class="container">
-        <div class="row">
-          {% for structure in structures %}
-            <div class="col-4">
-             <a href="{{
-                path(
-                  'structure.user.index',
-                  {
-                    id: structure.id
-                  }
-                )
-                }}"
-                class="btn btn-primary ">
-                Responsable associé
-              </a>
-              <div class="card text-white bg-secondary mb-3"
-                style="max-width: 20rem;">
-                <div class="row">
-                  <div class="mx-4 col card-header">
-                    Nom structure: {{ structure.nameStructure }}
-                    <a href="{{ path('structure.edit',{id : id,id1 : structure.id}) }}" class="btn btn-info">edit</a>
-                    <div class="row my-4">
-                      {% if structure.activeStructure %}
-                        <div class="col form-check form-switch">
-                          <input class="form-check-input"
-                            type="checkbox"
-                            id="flexSwitchCheckChecked"
-                            checked="" />
-                          <label class="form-check-label"
-                            for="flexSwitchCheckChecked">
-                            Activation
-                          </label>
-                        </div>
-                      {% else %}
-                        <div class="col form-check form-switch">
-                          <input class="form-check-input"
-                            type="checkbox"
-                            id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
-                            for="flexSwitchCheckDefault">
-                            Activation
-                          </label>
-                        </div>
-                      {% endif %}
-                      {# <a href="{{ path('partenaire.delete',{id : partenaire.id}) }}" class="col btn btn-info">delete</a> #}
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card-body">
-                  <h4 class="card-title">
-                    {{ structure.nameResponsable }}
-                  </h4>
-                  <p class="card-text">
-                    {{ structure.adresseStructure }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
+    </div>
+    <div class="row justify-content-between">
+      <div class="col-4">
+        <a href="{{
+          path(
+            'structure.new',
+            {
+              id: id
+            }
+          )
+          }}"
+          class="btn btn-success ">
+          Créer une structure
+        </a>
       </div>
     </div>
-    {# <div class="navigation d-flex justify-content-center mt-4">
+
+    {% for message in app.flashes('success') %}
+      <div class="alert alert-success mt-4">
+        {{ message }}
+      </div>
+    {% endfor %}
+
+    <div class="container">
+      <div class="row">
+        {% for structure in structures %}
+          <div class="col-4 my-4">
+            <a href="{{
+              path(
+                'structure.user.index',
+                {
+                  id: structure.id
+                }
+              )
+              }}"
+              class="btn btn-primary">
+              Responsable associé
+            </a>
+            <div class="card bg-dark mb-3" style="max-width: 20rem;">
+              <div class="row justify-content-evenly">
+                <div class="mx-4 col card-header">
+                  <h5>
+                    STRUCTURE : {{ (structure.nameStructure|length) > 8 ? (structure.nameStructure|slice(0, 8)) ~ '...' : structure.nameStructure }}
+                  </h5>
+
+                  <a href="{{
+                    path(
+                      'structure.edit',
+                      {
+                        id: id,
+                        id1: structure.id
+                      }
+                    )
+                    }}"
+                    class="btn col btn-success">
+                    edit
+                  </a>
+                  <div class="row m-4">
+                    {% if structure.activeStructure %}
+                      <div class="col form-check form-switch">
+                        <input class="form-check-input"
+                          type="checkbox"
+                          disabled
+                          id="flexSwitchCheckChecked"
+                          checked="" />
+                        <label class="form-check-label"
+                          for="flexSwitchCheckChecked">
+                          Activation
+                        </label>
+                      </div>
+                    {% else %}
+                      <div class="col form-check form-switch">
+                        <input class="form-check-input"
+                          type="checkbox"
+                          disabled
+                          id="flexSwitchCheckDefault" />
+                        <label class="form-check-label"
+                          for="flexSwitchCheckDefault">
+                          Activation
+                        </label>
+                      </div>
+                    {% endif %}
+                    {# <a href="{{ path('partenaire.delete',{id : partenaire.id}) }}" class="col btn btn-info">delete</a> #}
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body bg-light">
+                <h4 class="card-title">
+                  {{ structure.nameResponsable }}
+                </h4>
+                <p class="card-text">
+                  {{ structure.adresseStructure }}
+                </p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+  </div>
+  {# <div class="navigation d-flex justify-content-center mt-4">
       {{ knp_pagination_render(structure) }}
     </div> #}
   {# {% else %}
