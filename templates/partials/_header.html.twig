@@ -20,77 +20,73 @@
         </li>
 
         {% if app.user %}
-           {% endif %}
+          {% if is_granted('ROLE_ADMIN') %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('partenaire.index') }}">
+                partenaire
+              </a>
+            </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="{{ path('partenaire.index') }}">
-            partenaire
-          </a>
-        </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('user.index') }}">admin</a>
+            </li>
+          {% endif %}
+          {% if is_granted('ROLE_PARTENAIRE') %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('espace.partenaire') }}">
+                Espace partenaire
+              </a>
+            </li>
+          {% endif %}
 
-         <li class="nav-item">
-          <a class="nav-link" href="{{ path('user.index') }}">
-            admin
-          </a>
-        </li>
-          <li class="nav-item">
-          <a class="nav-link" href="{{ path('espace.partenaire') }}">
-            Espace partenaire
-          </a>
-        </li>
-
-          <li class="nav-item">
-          <a class="nav-link" href="{{ path('espace.structure') }}">
-            Espace partenaire
-          </a>
-        </li>
+          {% if is_granted('ROLE_STRUCTURE') %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('espace.structure') }}">
+                Espace structure
+              </a>
+            </li>
+          {% endif %}
+        {% endif %}
 
         {# <li class="nav-item">
           <a class="nav-link" href="{{ path('recipe.index') }}">Mes recettes</a>
         </li> #}
-    
-
       </ul>
 
-        <div class="d-flex">
-           <ul class="navbar-nav me-auto">
-            {% if app.user %}
-         <li class="nav-item dropdown me-5">
-        
-          <a class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-            href="#"
-            role="button"
-            aria-haspopup="true"
-            aria-expanded="false">
-            {{app.user.fullname}}
-          </a>
-          <div class="dropdown-menu">
-            {# <a class="dropdown-item" href="{{ path('user.edit',{id : app.user.id}) }}">Modifier informations</a>
+      <div class="d-flex">
+        <ul class="navbar-nav me-auto">
+          {% if app.user %}
+            <li class="nav-item dropdown me-5">
+              <a class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                href="#"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false">
+                {{ app.user.fullname }}
+              </a>
+              <div class="dropdown-menu">
+                {# <a class="dropdown-item" href="{{ path('user.edit',{id : app.user.id}) }}">Modifier informations</a>
             <a class="dropdown-item" href="{{ path('user.edit.password',{id : app.user.id}) }}">Modifier mot de passe</a> #}
-            {# <div class="dropdown-divider"></div> #}
-            <a class="dropdown-item" href="{{ path('security.logout') }}">Déconnexion</a>
-            
-          </div>
-            
-        </li>
-        {% else %}
-        
-          <li class="nav-item">
-           <a class="nav-link text-success" href="{{ path('security.login') }}">connexion</a>
-        </li>
-        {# <li class="nav-item">
+                {# <div class="dropdown-divider"></div> #}
+                <a class="dropdown-item" href="{{ path('security.logout') }}">
+                  Déconnexion
+                </a>
+              </div>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link text-success"
+                href="{{ path('security.login') }}">
+                Connexion
+              </a>
+            </li>
+            {# <li class="nav-item">
            <a class="nav-link text-success" href="{{ path('security.registration') }}">logout</a>
         </li> #}
-     
-        {% endif %}
-</ul>
-       </div>
-      
-   
-       
-         
-    
+          {% endif %}
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

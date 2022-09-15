@@ -58,32 +58,34 @@
                       )
                       }}"
                       class="btn col btn-info">
-                      edit
+                      Edit
                     </a>
                     
-                    <div class="row m-4">
+                    <div class="row  m-4">
                       {% if partenaire.active %}
-                        <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                        <div class="form-check form-switch">
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckChecked"
                             checked="" />
-                          <label class="form-check-label text-black"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckChecked">
                             Activation
                           </label>
                         </div>
                       {% else %}
-                        <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                        <div class="form-check form-switch">
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled  
                             id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckDefault">
                             Activation
                           </label>
                         </div>
                       {% endif %}
+                    
+                    </div>
                       <a href="{{
                         path(
                           'partenaire.delete',
@@ -93,9 +95,8 @@
                         )
                         }}"
                         class="col btn btn-success">
-                        delete
+                        Delete
                       </a>
-                    </div>
                   </div>
                 </div>
                 <a href="{{
@@ -107,11 +108,15 @@
                   )
                   }}"
                   class="btn btn-info">
-                  <div class="card-body" style="height: 10rem;">
-                    <h4 class="card-title">
+                  
+                  <div class="card-body" style="height: 18rem;">
+                  {# <img src="{{ partenaire.logoUrl }}" class="img-fluid" alt=""> #}
+                    <h2 class="card-title">Description</h2>
+                    <p class="card-text">
                     {{ partenaire.shortDescription|length > 30 ? partenaire.shortDescription|slice(0, 30) ~ '...' : partenaire.shortDescription  }}
                       {# {{ partenaire.shortDescription }} #}
-                    </h4>
+                    </p>
+                    <h2 class="card-title">Description</h2>
                     <p class="card-text">
                        {{ partenaire.fullDescription|length > 120 ? partenaire.shortDescription|slice(0, 120) ~ '...' : partenaire.shortDescription  }}
                       {# {{ partenaire.fullDescription }} #}

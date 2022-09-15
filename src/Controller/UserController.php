@@ -12,12 +12,14 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
     #[Route('/user', name: 'user.index')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(UserRepository $repository,PaginatorInterface $paginator,Request $request): Response
     {
       
@@ -33,6 +35,7 @@ class UserController extends AbstractController
 
 
     #[Route('/user/edition/{id}', name: 'user.edit')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edition(User $choosenUser, Request $request, EntityManagerInterface $manager,UserPasswordHasherInterface $hasher): Response
     {
        
@@ -69,6 +72,7 @@ class UserController extends AbstractController
 
   
     #[Route('/user/edition-mot-de-passe/{id}', 'user.edit.password', methods:['GET','POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function editPassword(User $choosenUser, Request $request,UserPasswordHasherInterface $hasher, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(UserPasswordType::class);
@@ -106,6 +110,7 @@ class UserController extends AbstractController
 
 
     #[Route('/user/suppression/{id}','user.delete', methods :['GET'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(EntityManagerInterface $manager,User $choosenUser):Response
     {
        $manager->remove($choosenUser);

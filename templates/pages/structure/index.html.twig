@@ -71,23 +71,23 @@
                   <div class="row m-4">
                     {% if structure.activeStructure %}
                       <div class="col form-check form-switch">
-                        <input class="form-check-input"
+                        <input class="form-check-input fs-6"
                           type="checkbox"
                           disabled
                           id="flexSwitchCheckChecked"
                           checked="" />
-                        <label class="form-check-label"
+                        <label class="badge bg-primary fs-6 mr-5"
                           for="flexSwitchCheckChecked">
                           Activation
                         </label>
                       </div>
                     {% else %}
                       <div class="col form-check form-switch">
-                        <input class="form-check-input"
+                        <input class="form-check-input fs-6"
                           type="checkbox"
                           disabled
                           id="flexSwitchCheckDefault" />
-                        <label class="form-check-label"
+                        <label class="badge bg-primary fs-6 mr-5"
                           for="flexSwitchCheckDefault">
                           Activation
                         </label>
@@ -98,9 +98,15 @@
                 </div>
               </div>
 
-              <div class="card-body bg-light">
+              <div class="card-body bg-primary">
                 <h4 class="card-title">
+                  Responsable
+                </h4>
+                  <p class="card-text">
                   {{ structure.nameResponsable }}
+                </p>
+                 <h4 class="card-title">
+                  Adresse
                 </h4>
                 <p class="card-text">
                   {{ structure.adresseStructure }}

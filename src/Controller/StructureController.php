@@ -14,6 +14,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StructureController extends AbstractController
@@ -29,6 +30,7 @@ class StructureController extends AbstractController
      * @return Response
      */
     #[Route('/structure/{id}', name: 'structure.index',methods:['GET'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(StructureRepository $repository,PaginatorInterface $paginator,Request $request,int $id): Response
     {
        
@@ -47,6 +49,7 @@ class StructureController extends AbstractController
         ]);
     }
     #[Route('/structure/new/{id}','structure.new',methods:['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(PartenaireRepository $repository, Request $request, EntityManagerInterface $manager,int $id):Response
     {
 
@@ -77,6 +80,7 @@ class StructureController extends AbstractController
 
 
     #[Route('/structure/edition/{id}/{id1}','structure.edit',methods:['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(PartenaireRepository $repository1,StructureRepository $repository, int $id, int $id1,Request $request,EntityManagerInterface $manager):Response
     {
         $partenaires =$repository1->findOneBy(["id"=>$id]);
@@ -103,6 +107,7 @@ class StructureController extends AbstractController
     }
 
     #[Route('/structure/user/{id}', name: 'structure.user.index')]
+    #[IsGranted('ROLE_ADMIN')]
     public function indexPartenaireUser(StructureRepository $repository1,UserRepository $repository,PaginatorInterface $paginator,Request $request,$id): Response
     {
         $structure =$repository1->findOneBy(["id"=>$id]);
@@ -123,11 +128,12 @@ class StructureController extends AbstractController
     }
 
     #[Route('/structure/new/user/{id}','structure.new.user', methods:['GET','POST'] )]
+    #[IsGranted('ROLE_ADMIN')]
     public function registration(StructureRepository $repository,Request $request, EntityManagerInterface $manager,$id):Response
     {
         $structure =$repository->findOneBy(["id"=>$id]);
         $user = new User();
-        $user->setRoles(['ROLE_USER']);
+        $user->setRoles(['ROLE_STRUCTURE']);
         $form = $this->createForm(RegistrationType::class,$user);
         $form->handleRequest($request);
         if ($form->isSubmitted()  && $form->isValid()){
@@ -140,7 +146,7 @@ class StructureController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            return $this->redirectToRoute('partenaire.index');
+            return $this->redirectToRoute('structure.user.index',['id' =>$id ]);
            
         }
         return $this->render('pages/structure/registration.html.twig',[

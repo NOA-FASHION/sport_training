@@ -8,15 +8,21 @@
   {# {% if partenaires.items is not same as([]) %} #}
   
     {% if partenaire is not null %}
-   <h1>DROITS STRUCTURES</h1>
+    <div class="container">
+      <div class="card my-3">
+        <h1 class="card-header">
+          Acces structures
+        </h1>
+      </div>
+      </div>
 
-   <div class="container">
+     <div class="container">
 
         <div class="row">
-          
+    
           
             <div class="col-4">
-              <div class="card text-white bg-warning mb-3"
+              <div class="card text-white bg-info mb-3"
                 style="max-width: 20rem;">
                 <div class="row">
                   <div class="mx-4 col card-header">
@@ -25,21 +31,23 @@
                     <div class=" my-4">
                       {% if structure.activeStructure %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                      <input class="form-check-input fs-6"
+
                             type="checkbox" disabled
                             id="flexSwitchCheckChecked"
                             checked="" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckChecked">
                             Activation
                           </label>
                         </div>
                       {% else %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
+
                             type="checkbox"
                             id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckDefault">
                             Activation
                           </label>
@@ -50,9 +58,16 @@
                   </div>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body bg-success">
                   <h4 class="card-title">
-                  responsable :   {{ structure.nameResponsable }}
+                  Responsable :   
+                  </h4>
+                 <p class="card-text">
+                 {{ structure.adresseStructure }}
+                  </h4>
+
+                   <h4 class="card-title">
+                  Adresse   
                   </h4>
                   <p class="card-text">
                    adresse : {{ structure.adresseStructure }}
@@ -60,24 +75,24 @@
 
                 {% if partenaire.membersRead %}
                 
-                  <div class="row my-1">
+                  <div class="row mx-2">
                       {% if structure.membersRead %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckChecked"
                             checked="" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckChecked">
                             membersRead
                           </label>
                         </div>
                       {% else %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckDefault">
                             membersRead
                           </label>
@@ -88,24 +103,24 @@
 
 
                       {% if partenaire.membersWrite %}
-                       <div class="row my-1">
+                     <div class="row mx-2">
                       {% if structure.membersWrite %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckChecked"
                             checked="" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckChecked">
                             membersWrite
                           </label>
                         </div>
                       {% else %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckDefault">
                             membersWrite
                           </label>
@@ -117,24 +132,24 @@
 
                     
                     {% if partenaire.membersProduct %}
-                       <div class="row my-1">
+                       <div class="row mx-2">
                       {% if structure.membersProduct %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckChecked"
                             checked="" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckChecked">
                             membersProduct
                           </label>
                         </div>
                       {% else %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckDefault">
                             membersProduct
                           </label>
@@ -145,24 +160,24 @@
 
 
                   {% if partenaire.membersPayment %}
-                       <div class="row my-1">
+                        <div class="row mx-2">
                       {% if structure.membersPayment %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckChecked"
                             checked="" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckChecked">
                             membersPayment
                           </label>
                         </div>
                       {% else %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckDefault">
                             membersPayment
                           </label>
@@ -173,24 +188,24 @@
 
 
                         {% if partenaire.membersStat %}
-                       <div class="row my-1">
+                        <div class="row mx-2">
                       {% if structure.membersStistiquesRead %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckChecked"
                             checked="" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckChecked">
                             membersStat
                           </label>
                         </div>
                       {% else %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckDefault">
                             membersStat
                           </label>
@@ -203,24 +218,24 @@
 
 
                       {% if partenaire.membersSubscription %}
-                       <div class="row my-1">
+                        <div class="row mx-2">
                       {% if structure.membersSubscriptionRead %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckChecked"
                             checked="" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckChecked">
                             membersSubscription
                           </label>
                         </div>
                       {% else %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckDefault">
                             membersSubscription
                           </label>
@@ -231,24 +246,24 @@
 
 
                       {% if partenaire.paymentSchedulesRead %}
-                       <div class="row my-1">
+                        <div class="row mx-2">
                       {% if structure.paymentSchedulesRead %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckChecked"
                             checked="" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckChecked">
                             paymentSchedulesRead
                           </label>
                         </div>
                       {% else %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckDefault">
                             paymentSchedulesRead
                           </label>
@@ -259,24 +274,24 @@
 
 
                         {% if partenaire.paymentSchedulesWrite %}
-                       <div class="row my-1">
+                       <div class="row mx-2">
                       {% if structure.paymentShedulesWrite %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckChecked"
                             checked="" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckChecked">
                             paymentSchedulesWrite
                           </label>
                         </div>
                       {% else %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckDefault">
                             paymentSchedulesWrite
                           </label>
@@ -287,24 +302,24 @@
 
 
                       {% if partenaire.paymentDaysRead %}
-                       <div class="row my-1">
+                       <div class="row mx-2">
                       {% if structure.paymentDaysRead %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled 
                             id="flexSwitchCheckChecked"
                             checked="" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckChecked">
                             paymentDaysRead
                           </label>
                         </div>
                       {% else %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckDefault">
                             paymentDaysRead
                           </label>
@@ -314,24 +329,24 @@
                       {% endif %}
 
                       {% if partenaire.paymentDayWrite %}
-                       <div class="row my-1">
+                       <div class="row mx-2">
                       {% if structure.paymentDaysWrite %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckChecked"
                             checked="" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckChecked">
                             paymentDayWrite
                           </label>
                         </div>
                       {% else %}
                         <div class="col form-check form-switch">
-                          <input class="form-check-input"
+                          <input class="form-check-input fs-6"
                             type="checkbox" disabled
                             id="flexSwitchCheckDefault" />
-                          <label class="form-check-label"
+                          <label class="badge bg-primary fs-6 mr-5"
                             for="flexSwitchCheckDefault">
                             paymentDayWrite
                           </label>
@@ -341,7 +356,7 @@
                        {% endif %}
                       </div>
             </div> </div>
-      
+       
        
       </div>
     </div>

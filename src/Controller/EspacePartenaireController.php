@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class EspacePartenaireController extends AbstractController
 {
     #[Route('/espace/partenaire', name: 'espace.partenaire')]
-    #[Security("is_granted('ROLE_USER') and user === partenaire.getUserPartenaire()")]
+    #[IsGranted('ROLE_PARTENAIRE')]
     public function index(PartenaireRepository $repository,Request $request): Response
     {
         if(!$this->getUser()){

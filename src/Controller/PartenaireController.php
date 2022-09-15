@@ -13,6 +13,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PartenaireController extends AbstractController
@@ -28,11 +29,10 @@ class PartenaireController extends AbstractController
      * @return Response
      */
     #[Route('/partenaire', name: 'partenaire.index')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(PartenaireRepository $repository,PaginatorInterface $paginator,Request $request): Response
     {
-      
-
-
+    
         $partenaires  = $paginator->paginate(
             $repository->findAll(), /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
@@ -53,6 +53,7 @@ class PartenaireController extends AbstractController
      */
 
     #[Route('/partenaire/new','partenaire.new', methods:['GET' , 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request,EntityManagerInterface $manager):Response
     {
         $partenaire = new Partenaire();
@@ -84,6 +85,7 @@ class PartenaireController extends AbstractController
      */
 
     #[Route('/partenaire/edition/{id}','partenaire.edit',methods:['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(PartenaireRepository $repository, int $id,Request $request,EntityManagerInterface $manager):Response
     {
         $partenaire =$repository->findOneBy(["id"=>$id]);
@@ -115,6 +117,7 @@ class PartenaireController extends AbstractController
      */
 
     #[Route('/partenaire/suppression/{id}','partenaire.delete', methods :['GET'])]
+    #[IsGranted('ROLE_ADMIN')]
      public function delete(EntityManagerInterface $manager,Partenaire $partenaire):Response
      {
         $manager->remove($partenaire);
@@ -127,11 +130,12 @@ class PartenaireController extends AbstractController
      }
 
     #[Route('/partenaire/new/user/{id}','partenaire.new.user', methods:['GET','POST'] )]
+    #[IsGranted('ROLE_ADMIN')]
     public function registration(PartenaireRepository $repository,Request $request, EntityManagerInterface $manager,$id):Response
     {
         $partenaire =$repository->findOneBy(["id"=>$id]);
         $user = new User();
-        $user->setRoles(['ROLE_USER']);
+        $user->setRoles(['ROLE_PARTENAIRE']);
         $form = $this->createForm(RegistrationType::class,$user);
         $form->handleRequest($request);
         if ($form->isSubmitted()  && $form->isValid()){
@@ -154,6 +158,7 @@ class PartenaireController extends AbstractController
     }
 
     #[Route('/partenaire/user/{id}', name: 'partenaire.user.index')]
+    #[IsGranted('ROLE_ADMIN')]
     public function indexPartenaireUser(PartenaireRepository $repository1,UserRepository $repository,PaginatorInterface $paginator,Request $request,$id): Response
     {
         $partenaire =$repository1->findOneBy(["id"=>$id]);
