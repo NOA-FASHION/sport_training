@@ -14,7 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class PartenaireController extends AbstractController
 {
@@ -131,7 +134,7 @@ class PartenaireController extends AbstractController
 
     #[Route('/partenaire/new/user/{id}','partenaire.new.user', methods:['GET','POST'] )]
     #[IsGranted('ROLE_ADMIN')]
-    public function registration(PartenaireRepository $repository,Request $request, EntityManagerInterface $manager,$id):Response
+    public function registration(MailerInterface $mailer,PartenaireRepository $repository,Request $request, EntityManagerInterface $manager,$id):Response
     {
         $partenaire =$repository->findOneBy(["id"=>$id]);
         $user = new User();
@@ -139,14 +142,31 @@ class PartenaireController extends AbstractController
         $form = $this->createForm(RegistrationType::class,$user);
         $form->handleRequest($request);
         if ($form->isSubmitted()  && $form->isValid()){
+           
             $user = $form->getData();
+            
             $user->setPartenaire($partenaire);
+            
             $this->addFlash(
                 'success',
                 'Votre compte à été crée avec succes !'
              );
-            $manager->persist($user);
-            $manager->flush();
+            // $manager->persist($user);
+            // $manager->flush();
+
+            $email = (new Email())
+            ->from('michel.almont@gmail.com')
+            ->to('michel.almont972@gmail.com')
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Compte partenaire sport-traing créer')
+            ->text('Votre lien de connexiont')
+            ->html('<p>login et mot de passe</p>');
+
+            $mailer->send($email);
+
 
             return $this->redirectToRoute('partenaire.index');
            

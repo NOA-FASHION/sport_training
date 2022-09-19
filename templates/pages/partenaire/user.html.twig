@@ -3,7 +3,9 @@
 {% block title %}Port-training{% endblock %}
 
 {% block body %}
+{% if user is null %}
 <a href="{{ path('partenaire.new.user',{id : id}) }}" class="btn btn-primary m-4">Création un responable</a>
+{% endif %}
 {% if user is not null %}
 <div class="container mt-4">
 <h1>Responsable du partenaire {{ partenaire.name }}</h1>
@@ -49,7 +51,11 @@
   </tbody>
 </table>
 {% else %}
-<h4>Il n'y a pas de responsable</h4>
+<br>
+<div class="badge bg-warning m-4">
+  <h4>Aucun responsable associé à ce partenaire</h4>
+</div>
+
 {% endif %}
 </div>
 {% endblock %}
