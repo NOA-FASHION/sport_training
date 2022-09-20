@@ -11,7 +11,9 @@ use App\Repository\StructureRepository;
 use App\Repository\PartenaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -129,7 +131,7 @@ class StructureController extends AbstractController
 
     #[Route('/structure/new/user/{id}','structure.new.user', methods:['GET','POST'] )]
     #[IsGranted('ROLE_ADMIN')]
-    public function registration(StructureRepository $repository,Request $request, EntityManagerInterface $manager,$id):Response
+    public function registration(MailerInterface $mailer,StructureRepository $repository,Request $request, EntityManagerInterface $manager,$id):Response
     {
         $structure =$repository->findOneBy(["id"=>$id]);
         $user = new User();
@@ -145,6 +147,24 @@ class StructureController extends AbstractController
              );
             $manager->persist($user);
             $manager->flush();
+            
+            $email = (new TemplatedEmail())
+            ->from('michel.almont@gmail.com')
+            ->to($user->getEmail())
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Votre compte Sport-training à été crée avec succès')
+            ->htmlTemplate('mails/contact.html.twig')
+
+            // pass variables (name => value) to the template
+                ->context([
+                'expiration_date' => new \DateTime('+7 days'),
+                'user' => $user,
+                ]);
+
+            $mailer->send($email);
 
             return $this->redirectToRoute('structure.user.index',['id' =>$id ]);
            

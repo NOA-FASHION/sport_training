@@ -5,17 +5,18 @@
 	</head>
 	<body>
 		<h1>Confirmation de création de compte pour l'utilisateur:
-			{# {{ contact.fullName }}</h1> #}
+			{{ user.fullName }}</h1>
 
 			<p>Votre login et mot sont les suivants:</p>
 
 		<p>login :
-			{# {{ contact.email }}</p> #}
+			{{ user.email }}</p>
 		<p>mot de passe :
-			{# {{ contact.plainPassword }}</p> #}
-		{# <p>Message :</p>
+			{{ user.plainPassword }}</p>
+		<p>Message :</p>
 		<div>
-			{{ contact.message|raw }}
-		</div> #}
+			voici votre lien de connexion:
+			<a href="#"> connexion partenaire</a>
+		</div>
 	</body>
 </html>

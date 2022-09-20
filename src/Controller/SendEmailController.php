@@ -29,7 +29,7 @@ class SendEmailController extends AbstractController
         //->replyTo('fabien@example.com')
         //->priority(Email::PRIORITY_HIGH)
         ->subject('Compte partenaire sport-traing créer')
-        ->text('Votre lien de connexiont')
+        ->text('Votre lien de connexion')
         ->html('<p>login et mot de passe</p>');
 
         

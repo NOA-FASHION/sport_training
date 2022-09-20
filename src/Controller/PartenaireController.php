@@ -151,19 +151,24 @@ class PartenaireController extends AbstractController
                 'success',
                 'Votre compte à été crée avec succes !'
              );
-            // $manager->persist($user);
-            // $manager->flush();
+            $manager->persist($user);
+            $manager->flush();
 
-            $email = (new Email())
+            $email = (new TemplatedEmail())
             ->from('michel.almont@gmail.com')
-            ->to('michel.almont972@gmail.com')
+            ->to($user->getEmail())
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
-            ->subject('Compte partenaire sport-traing créer')
-            ->text('Votre lien de connexiont')
-            ->html('<p>login et mot de passe</p>');
+            ->subject('Votre compte Sport-training à été crée avec succès')
+            ->htmlTemplate('mails/contact.html.twig')
+
+            // pass variables (name => value) to the template
+                ->context([
+                'expiration_date' => new \DateTime('+7 days'),
+                'user' => $user,
+                ]);
 
             $mailer->send($email);
 
