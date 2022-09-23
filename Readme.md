@@ -15,12 +15,9 @@ un gestionnaire d'acces à des modules d'une application tierce.
 
 #### Utilisateur consernés: Equipe Tech
 
-
 * Ajout de partenaire franchisé.
 * Association et création d'un compte apartenaire par partenaire
 * Activation/désaction des partenaires
-
-
 
 2.  ## Gestion des structures
 
@@ -29,7 +26,6 @@ un gestionnaire d'acces à des modules d'une application tierce.
 * Ajout de structures par partenaire
 * Association et création d'un compte structure par structure
 * Activation/désaction des structures
-
 
 3.  ## Gestion des acces
 
@@ -308,5 +304,30 @@ $ git push -u origin main
 ```
 ------
 # sécurisation de l'environement
+
+il est maintenant temps de mettre en place un pare-feu. Un pare-feu est essentiel lors de la configuration du VPS pour limiter le trafic indésirable sortant ou entrant dans votre VPS. Installez ufw et configurez un pare-feu pour autoriser les opérations SSH en faisant .
+
+## Installation du parefeu ufw
+```Terminal
+$ sudo apt install ufw -y
+```
+## configuration du parefeu
+
+```Terminal
+$ sudo ufw allow OpenSSH
+$ sudo ufw allow 443
+$ sudo ufw allow OpenSSH
+$ sudo ufw enable -y 
+```
+## Installation du fail2ban
+
+fail2ban est un logiciel qui se charge d'analyser les logs de divers services installés sur la machine, pour bannir automatiquement un hôte via iptables pour une durée déterminée, en cas d'échec après X tentatives.
+C'est un élément essentiel pour sécuriser son système, et éviter des intrusions via brute-force.
+
+```Terminal
+$ sudo apt install fail2ban
+```
+
+
 ------
 # mise en production de l'environement
