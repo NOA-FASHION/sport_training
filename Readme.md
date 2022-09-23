@@ -4,6 +4,7 @@ SPORT-TRAINING
 Ce document est un guide de déploiement et un manuel d'utilisation 
 pour l'application Sport_training dévéloppé dans le cadre de l'ECF 
 de l'école STUDI.
+<br/>
 Selon le cahier des charges l'application demandé devra être
 un gestionnaire d'acces à des modules d'une application tierce.
 
