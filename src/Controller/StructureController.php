@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\Mime\Email;
 class StructureController extends AbstractController
 {
 
@@ -83,10 +83,15 @@ class StructureController extends AbstractController
 
     #[Route('/structure/edition/{id}/{id1}','structure.edit',methods:['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function edit(PartenaireRepository $repository1,StructureRepository $repository, int $id, int $id1,Request $request,EntityManagerInterface $manager):Response
+    public function edit(UserRepository $repository2 ,MailerInterface $mailer,PartenaireRepository $repository1,StructureRepository $repository, int $id, int $id1,Request $request,EntityManagerInterface $manager):Response
     {
+        $user=new user();
         $partenaires =$repository1->findOneBy(["id"=>$id]);
         $structure =$repository->findOneBy(["id"=>$id1]);
+        if($structure->getUserStructure() !=null){
+            $user=$repository2->findOneBy(["id"=>$structure->getUserStructure()]);
+           
+        }
         $form = $this->createForm(StructureType::class, $structure);
         $form->handleRequest($request);
         
@@ -94,11 +99,22 @@ class StructureController extends AbstractController
             $structure = $form->getData();
             $manager->persist($structure);
             $manager->flush();
-            // $this->addFlash(
-            //     'success',
-            //     'la structure à été modifier avec succes !'
-            //  );
-            // return $this->redirectToRoute('partenaire.index');
+            if($structure->getUserStructure() !=null){
+              
+            $email = (new Email())
+            ->from('michel.almont@gmail.com')
+            ->to($user->getEmail())
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Modification des information de la structure '.$structure->getNameStructure())
+            ->text('Des modifcation ont été éffectuer sur la structure '.$structure->getNameStructure())
+            ->html('<p>connecter vous à l\'adresse suivante pour vérifier les modification éffectuées</p>');
+
+        $mailer->send($email);
+            }
+            return $this->redirectToRoute('structure.index',['id' =>$id]);
         }
 
         return $this->render('pages/structure/edit.html.twig',[

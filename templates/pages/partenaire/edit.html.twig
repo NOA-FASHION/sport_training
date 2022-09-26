@@ -5,9 +5,11 @@
     <h1>
       modification d'un partenaire
     </h1>
+
 {# <input type="checkbox" name="LetterNeed" id="LetterNeed" onclick="validate(this)">Not important</input> #}
 
     {{ form_start(form) }}
+ 
 
     <div class="form-group">
       {{ form_label(form.name) }}
@@ -159,12 +161,12 @@
         {{ form_errors(form.paymentDayWrite) }}
       </div>
     </div>
-
-
-
+     {{ form_widget(form.submit, {'attr': {'onclick': 'return confirm("être vous sur de sauvegarder ces modifications")'}} ) }}
+   
 
 
 
     {{ form_end(form) }}
  </div>
 {% endblock %}
+

@@ -42,7 +42,7 @@ un gestionnaire d'acces à des modules d'une application tierce.
 * Email envoyer lors de la création de structures ou partenaires
 * Information d'autentification envoyer par email aux gérants de structures et aux partenaires.
 * Email envoyer lors des modifications de permissions.
-* Acces des gérants de structures et des partenaires à la platefrome apres authentification en lecture seul. 
+* Acces des gérants de structures et des partenaires à la plateforme apres authentification en lecture seul. 
 * Acces apres authentification en lecture/ecriture aux admins à la plateforme.
 
 

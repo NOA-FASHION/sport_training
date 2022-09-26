@@ -89,9 +89,14 @@ class PartenaireController extends AbstractController
 
     #[Route('/partenaire/edition/{id}','partenaire.edit',methods:['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function edit(PartenaireRepository $repository, int $id,Request $request,EntityManagerInterface $manager):Response
+    public function edit(MailerInterface $mailer,UserRepository $repository2 ,PartenaireRepository $repository, int $id,Request $request,EntityManagerInterface $manager):Response
     {
+        $user=new user();
         $partenaire =$repository->findOneBy(["id"=>$id]);
+        if($partenaire->getUserPartenaire() !=null){
+            $user=$repository2->findOneBy(["id"=>$partenaire->getUserPartenaire()]);
+           
+        }
         $form = $this->createForm(PartenaireType::class, $partenaire);
         $form->handleRequest($request);
         if($form->isSubmitted()  && $form->isValid()){
@@ -102,6 +107,23 @@ class PartenaireController extends AbstractController
                 'success',
                 'le partenaire à été modifier avec succes !'
              );
+
+             if($partenaire->getUserPartenaire() !=null){
+              
+                $email = (new Email())
+                ->from('michel.almont@gmail.com')
+                ->to("michel.almont972@gmail.com")
+                //->cc('cc@example.com')
+                //->bcc('bcc@example.com')
+                //->replyTo('fabien@example.com')
+                //->priority(Email::PRIORITY_HIGH)
+                ->subject('Modification des information du partenaire '.$partenaire->getName())
+                ->text('Des modifcation ont été éffectuer pour le partenaire '.$partenaire->getName())
+                ->html('<p>connecter vous à l\'adresse suivante pour vérifier les modification éffectuées</p>');
+    
+            $mailer->send($email);
+                }
+             
             return $this->redirectToRoute('partenaire.index');
         }
 
