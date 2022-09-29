@@ -5,19 +5,25 @@
 
 {% block body %}
   <div class="container mt-4">
-    <div class="jumbotron">
-      <h1 class="display-4">
-        Bienvenue sur sport-training-app
-      </h1>
-      <p class="lead">
-        sport-training-app est le gestionnaire des salles de sport de la marque sport-training.
-      </p>
-      <hr class="my-4" />
-      <p>
-        Pour commencer, rendez vous sur la page d'inscription pour utiliser
-        l'application.
-      </p>
-      <a class="btn btn-primary btn-dark" href="#" role="button">inscription</a>
+    <div class="row">
+      <div class="jumbotron col align-self-center">
+        <h1 class="display-4">
+          Bienvenue sur sport-training-app
+        </h1>
+        <p class="lead">
+          sport-training-app est le gestionnaire des salles de sport de la
+          marque sport-training.
+        </p>
+        <hr class="my-4" />
+        <p>
+          Pour commencer, rendez vous sur la page d'inscription pour utiliser
+          l'application.
+        </p>
+    
+      </div>
+    </div>
+    <div class="col">
+      <img src="{{ asset('assets/pictures/sport.jpg') }}" alt="system" class="img-fluid rounded-circle" />
     </div>
   </div>
 {% endblock %}
