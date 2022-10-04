@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Partenaire;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Partenaire>
@@ -37,6 +38,28 @@ class PartenaireRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findSearch(SearchData $search): array
+    {
+        $query = $this
+        ->createQueryBuilder('p');
+
+        if(!empty($search->p)){
+            $query=$query
+            ->andWhere('p.name LIKE :pa')
+            ->setParameter('pa',"%{$search->p}%");
+
+        }
+        if($search->active != null){
+            $query=$query
+            ->andWhere('p.active = :active')
+            ->setParameter('active',$search->active);
+
+        }
+        return $query->getQuery()->getResult();
+
+
     }
 
 //    /**

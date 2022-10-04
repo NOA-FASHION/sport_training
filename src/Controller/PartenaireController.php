@@ -3,21 +3,23 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Data\SearchData;
 use App\Entity\Partenaire;
 use App\Form\PartenaireType;
 use App\Form\RegistrationType;
+use Symfony\Component\Mime\Email;
+use App\Form\ChoicePartenaireType;
 use App\Repository\UserRepository;
 use App\Repository\PartenaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 
 class PartenaireController extends AbstractController
 {
@@ -35,14 +37,23 @@ class PartenaireController extends AbstractController
     #[IsGranted('ROLE_ADMIN')]
     public function index(PartenaireRepository $repository,PaginatorInterface $paginator,Request $request): Response
     {
-    
+        // $partenaire = $repository->findAll();
+     
+        $data = new SearchData();
+        $form = $this->createForm(ChoicePartenaireType::class, $data);
+        $form->handleRequest($request);
+   
+        $partenaireFiltre = $repository->findSearch($data);
+
         $partenaires  = $paginator->paginate(
-            $repository->findAll(), /* query NOT result */
+            $partenaireFiltre, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
             6 /*limit per page*/
         );
         return $this->render('pages/partenaire/index.html.twig', [
-            'partenaires' => $partenaires
+            'partenaires' => $partenaires,
+            'form' => $form->createView(),
+          
         ]);
     }
 
@@ -97,6 +108,7 @@ class PartenaireController extends AbstractController
             $user=$repository2->findOneBy(["id"=>$partenaire->getUserPartenaire()]);
            
         }
+       
         $form = $this->createForm(PartenaireType::class, $partenaire);
         $form->handleRequest($request);
         if($form->isSubmitted()  && $form->isValid()){
@@ -112,7 +124,7 @@ class PartenaireController extends AbstractController
               
                 $email = (new Email())
                 ->from('michel.almont@gmail.com')
-                ->to("michel.almont972@gmail.com")
+                ->to( $user->getEmail())
                 //->cc('cc@example.com')
                 //->bcc('bcc@example.com')
                 //->replyTo('fabien@example.com')
@@ -128,7 +140,8 @@ class PartenaireController extends AbstractController
         }
 
         return $this->render('pages/partenaire/edit.html.twig',[
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            
         ]);
     }
 

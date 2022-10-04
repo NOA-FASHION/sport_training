@@ -5,136 +5,163 @@
 {% endblock %}
 
 {% block body %}
-  {% if partenaires.items is not same as([]) %}
-    <div class="container">
-      <div class="card my-3">
-        <h1 class="card-header">
-          Liste des partenaires
-        </h1>
-      </div>
-      <div class="row justify-content-between">
-        <div class="col-4">
-          <a href="{{ path('partenaire.new') }}" class="btn btn-success mb-4">
-            Créer un partenaire
-          </a>
-        </div>
-      </div>
+  <div class="container">
+    <div class="row">
+    
+        {{ form_start(form) }}
 
-      {% for message in app.flashes('success') %}
-        <div class="alert alert-success mt-4">
-          {{ message }}
-        </div>
-      {% endfor %}
+        {{ form_end(form) }}
 
-      <div class="container">
-        <div class="row">
-          {% for partenaire in partenaires %}
-            <div class="col-4 my-4">
-              <a href="{{
-                path(
-                  'partenaire.user.index',
-                  {
-                    id: partenaire.id
-                  }
-                )
-                }}"
-                class="btn btn-primary">
-                Responsable associé
-              </a>
 
-              <div class="card bg-secondary mb-3" style="max-width: 20rem;">
-                <div class="row justify-content-evenly">
-                  <div class="mx-4 col card-header">
-                    <h5>
-                      PARTENAIRE :     {{ partenaire.name|length > 8 ? partenaire.name|slice(0, 8) ~ '...' : partenaire.name  }}
-                    </h5>
+      <div class="row">
+        {% if partenaires.items is not same as([]) %}
+          <div class="container">
+            <div class="card my-3">
+              <h1 class="card-header">
+                Liste des partenaires
+              </h1>
+            </div>
+            <div class="row justify-content-between">
+              <div class="col-4">
+                <a href="{{ path('partenaire.new') }}"
+                  class="btn btn-success mb-4">
+                  Créer un partenaire
+                </a>
+              </div>
+            </div>
 
+            {% for message in app.flashes('success') %}
+              <div class="alert alert-success mt-4">
+                {{ message }}
+              </div>
+            {% endfor %}
+
+            <div class="container">
+              <div class="row">
+                {% for partenaire in partenaires %}
+                  <div class="col-4 my-4">
                     <a href="{{
                       path(
-                        'partenaire.edit',
+                        'partenaire.user.index',
                         {
                           id: partenaire.id
                         }
                       )
                       }}"
-                      class="btn col btn-info">
-                      Edit
+                      class="btn btn-primary">
+                      Responsable associé
                     </a>
-                    
-                    <div class="row  m-4">
-                      {% if partenaire.active %}
-                        <div class="form-check form-switch">
-                          <input class="form-check-input fs-6"
-                            type="checkbox" disabled
-                            id="flexSwitchCheckChecked"
-                            checked="" />
-                          <label class="badge bg-primary fs-6 mr-5"
-                            for="flexSwitchCheckChecked">
-                            Activation
-                          </label>
+
+                    <div class="card bg-secondary mb-3"
+                      style="max-width: 20rem;">
+                      <div class="row justify-content-evenly">
+                        <div class="mx-4 col card-header">
+                          <h5>
+                            PARTENAIRE : {{ (partenaire.name|length) > 8 ? (partenaire.name|slice(0, 8)) ~ '...' : partenaire.name }}
+                          </h5>
+
+                          <a href="{{
+                            path(
+                              'partenaire.edit',
+                              {
+                                id: partenaire.id
+                              }
+                            )
+                            }}"
+                            class="btn col btn-info">
+                            Edit
+                          </a>
+
+                          <div class="row m-4">
+                            {% if partenaire.active %}
+                              <div class="form-check form-switch">
+                                <input class="form-check-input fs-6"
+                                  type="checkbox"
+                                  disabled
+                                  id="flexSwitchCheckChecked"
+                                  checked="" />
+                                <label class="badge bg-primary fs-6 mr-5"
+                                  for="flexSwitchCheckChecked">
+                                  Activation
+                                </label>
+                              </div>
+                            {% else %}
+                              <div class="form-check form-switch">
+                                <input class="form-check-input fs-6"
+                                  type="checkbox"
+                                  disabled
+                                  id="flexSwitchCheckDefault" />
+                                <label class="badge bg-primary fs-6 mr-5"
+                                  for="flexSwitchCheckDefault">
+                                  Activation
+                                </label>
+                              </div>
+                            {% endif %}
+                          </div>
+                          <a href="{{
+                            path(
+                              'partenaire.delete',
+                              {
+                                id: partenaire.id
+                              }
+                            )
+                            }}"
+                            class="col btn btn-success">
+                            Delete
+                          </a>
                         </div>
-                      {% else %}
-                        <div class="form-check form-switch">
-                          <input class="form-check-input fs-6"
-                            type="checkbox" disabled  
-                            id="flexSwitchCheckDefault" />
-                          <label class="badge bg-primary fs-6 mr-5"
-                            for="flexSwitchCheckDefault">
-                            Activation
-                          </label>
-                        </div>
-                      {% endif %}
-                    
-                    </div>
+                      </div>
                       <a href="{{
                         path(
-                          'partenaire.delete',
+                          'structure.index',
                           {
                             id: partenaire.id
                           }
                         )
                         }}"
-                        class="col btn btn-success">
-                        Delete
+                        class="btn btn-info">
+                        <div class="card-body">
+                          <img src="{{ partenaire.logoUrl }}"
+                            class="img-fluid"
+                            alt="" />
+                          <h2 class="card-title">
+                            Description
+                          </h2>
+                          <p class="card-text">
+                            {{ (partenaire.shortDescription|length) > 30
+                              ? (partenaire.shortDescription|slice(0, 30))
+                                ~ '...'
+                              : partenaire.shortDescription }}
+                            {# {{ partenaire.shortDescription }} #}
+                          </p>
+                          <h2 class="card-title">
+                            Description
+                          </h2>
+                          <p class="card-text">
+                            {{ (partenaire.fullDescription|length) > 120
+                              ? (partenaire.shortDescription|slice(0, 120))
+                                ~ '...'
+                              : partenaire.shortDescription }}
+                            {# {{ partenaire.fullDescription }} #}
+                          </p>
+                        </div>
                       </a>
+                    </div>
                   </div>
-                </div>
-                <a href="{{
-                  path(
-                    'structure.index',
-                    {
-                      id: partenaire.id
-                    }
-                  )
-                  }}"
-                  class="btn btn-info">
-                  
-                  <div class="card-body" style="height: 18rem;">
-                  {# <img src="{{ partenaire.logoUrl }}" class="img-fluid" alt=""> #}
-                    <h2 class="card-title">Description</h2>
-                    <p class="card-text">
-                    {{ partenaire.shortDescription|length > 30 ? partenaire.shortDescription|slice(0, 30) ~ '...' : partenaire.shortDescription  }}
-                      {# {{ partenaire.shortDescription }} #}
-                    </p>
-                    <h2 class="card-title">Description</h2>
-                    <p class="card-text">
-                       {{ partenaire.fullDescription|length > 120 ? partenaire.shortDescription|slice(0, 120) ~ '...' : partenaire.shortDescription  }}
-                      {# {{ partenaire.fullDescription }} #}
-                    </p>
-                  </div>
-                </a>
+                {% endfor %}
               </div>
             </div>
-          {% endfor %}
-        </div>
+          </div>
+          <div class="navigation d-flex justify-content-center mt-4">
+            {{ knp_pagination_render(partenaires) }}
+          </div>
+        {% else %}
+          <h4>
+            Il n'y a pas de partenairescomposer require
+            knplabs/knp-paginator-bundle
+          </h4>
+        {% endif %}
       </div>
     </div>
-    <div class="navigation d-flex justify-content-center mt-4">
-      {{ knp_pagination_render(partenaires) }}
-    </div>
-  {% else %}
-    <h4>
-      Il n'y a pas de partenairescomposer require knplabs/knp-paginator-bundle
-    </h4>
-  {% endif %}
+  </div>
 {% endblock %}
