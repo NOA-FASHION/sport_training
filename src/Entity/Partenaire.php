@@ -23,27 +23,31 @@ class Partenaire
     #[Assert\Length(min:2, max:50)]
     private ?string $name = null;
 
+    #[Assert\NotNull()]
     #[ORM\Column]
     private ?bool $active = null;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(length: 100, nullable: true)]
-    
     private ?string $shortDescription = null;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(length: 255, nullable: true)]
-    
     private ?string $fullDescription = null;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(length: 100, nullable: true)]
-   
     private ?string $logoUrl = null;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $dpo = null;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $technicalContact = null;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $commercialContact = null;
 

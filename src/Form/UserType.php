@@ -56,6 +56,10 @@ class UserType extends AbstractType
                 'label' => 'Mot de passe',
                 'label_attr' => [
                     'class' => 'form-label  mt-4'
+                ],
+                'constraints' => [
+                    new Assert\NotBlank(),
+                   
                 ]
             ])
 

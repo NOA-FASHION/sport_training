@@ -15,24 +15,26 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegistrationType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder
-        ->add('fullName', TextType::class, [
-            'attr' => [
-                'class' => 'form-control',
-                'minlenght' => '2',
-                'maxlenght' => '50',
-            ],
-            'label' => 'Nom / Prénom',
-            'label_attr' => [
-                'class' => 'form-label  mt-4'
-            ],
-            'constraints' => [
-                new Assert\NotBlank(),
-                new Assert\Length(['min' => 2, 'max' => 50])
-            ]
-        ])
+            ->add('fullName', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlenght' => '2',
+                    'maxlenght' => '50',
+                ],
+                'label' => 'Nom / Prénom',
+                'label_attr' => [
+                    'class' => 'form-label  mt-4',
+                ],
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Length(['min' => 2, 'max' => 50]),
+                ],
+            ])
             ->add('email', EmailType::class, [
                 'attr' => [
                     'class' => 'form-control',
@@ -41,43 +43,57 @@ class RegistrationType extends AbstractType
                 ],
                 'label' => 'Adresse email',
                 'label_attr' => [
-                    'class' => 'form-label  mt-4'
+                    'class' => 'form-label  mt-4',
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
                     new Assert\Email(),
-                    new Assert\Length(['min' => 2, 'max' => 180])
-                ]
+                    new Assert\Length(['min' => 2, 'max' => 180]),
+                ],
             ])
-          
+
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
                     'attr' => [
-                        'class' => 'form-control'
+                        'class' => 'form-control',
                     ],
                     'label' => 'Mot de passe',
                     'label_attr' => [
-                        'class' => 'form-label  mt-4'
-                    ]
+                        'class' => 'form-label  mt-4',
+                    ],
                 ],
                 'second_options' => [
                     'attr' => [
-                        'class' => 'form-control'
+                        'class' => 'form-control',
                     ],
                     'label' => 'Confirmation du mot de passe',
                     'label_attr' => [
-                        'class' => 'form-label  mt-4'
-                    ]
+                        'class' => 'form-label  mt-4',
+                    ],
                 ],
-                'invalid_message' => 'Les mots de passe ne correspondent pas.'
+                'invalid_message' => 'Les mots de passe ne correspondent pas.',
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Length([
+                        'min' => 8,
+                        'max' => 200,
+                        'minMessage' =>
+                            'Your password must be at least {{ limit }} characters long.',
+                        'maxMessage' =>
+                            'Your password cannot be longer than {{ limit }} characters.',
+                    ]),
+                    new Assert\NotCompromisedPassword([
+                        'message' => 'Mot de passe trop simple',
+                    ]),
+                
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4'
-                ]
+                    'class' => 'btn btn-primary mt-4',
+                ],
             ]);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
