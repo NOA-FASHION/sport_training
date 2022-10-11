@@ -21,6 +21,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 50, unique: true)]
     #[Assert\NotBlank()]
+    #[Assert\Email()]
+    #[Assert\NotNull()]
     #[Assert\Length(min:2, max:50)]
     private ?string $email = null;
 
@@ -32,6 +34,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+
+    #[Assert\NotNull()]
+    #[Assert\NotBlank()]
     private ?string $plainPassword = null;
 
     /**
@@ -39,6 +44,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     #[Assert\NotNull()]
+    #[Assert\NotBlank()]
+   
     private ?string $password = 'password';
 
     #[ORM\OneToOne(inversedBy: 'userPartenaire', cascade: ['persist', 'remove'])]
