@@ -162,7 +162,7 @@ class PartenaireController extends AbstractController
         $manager->flush();
         $this->addFlash(
             'success',
-            'Votre ingrédient à été supprimer avec succes !'
+            'Votre partenaire à été supprimer avec succes !'
          );
          return $this->redirectToRoute('partenaire.index');
      }
@@ -184,7 +184,7 @@ class PartenaireController extends AbstractController
             
             $this->addFlash(
                 'success',
-                'Votre compte à été crée avec succes !'
+                'Votre compte partenaire à été crée avec succes !'
              );
             $manager->persist($user);
             $manager->flush();

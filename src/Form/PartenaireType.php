@@ -60,7 +60,7 @@ class PartenaireType extends AbstractType
                 ],
                 'constraints' =>[
                  new Assert\NotBlank(),
-                 new Assert\Length([100]),
+               
                 ]
             ])
             ->add('fullDescription', TextareaType::class, [
@@ -75,7 +75,7 @@ class PartenaireType extends AbstractType
                 ],
                 'constraints' =>[
                  new Assert\NotBlank(),
-                 new Assert\Length([255]),
+        
                 ]
             ])
             ->add('logoUrl', TextType::class,[
@@ -106,7 +106,7 @@ class PartenaireType extends AbstractType
                     'class'=> 'form-label mt-4'
                 ],
                 'constraints' =>[
-                    new Assert\Length([100]),
+               
                     new Assert\NotBlank()
                 ]
             ])
@@ -122,7 +122,7 @@ class PartenaireType extends AbstractType
                     'class'=> 'form-label mt-4'
                 ],
                 'constraints' =>[
-                    new Assert\Length([50]),
+     
                     new Assert\NotBlank()
                 ]
             ])
@@ -138,7 +138,7 @@ class PartenaireType extends AbstractType
                     'class'=> 'form-label mt-4'
                 ],
                 'constraints' =>[
-                    new Assert\Length([50]),
+             
                     new Assert\NotBlank()
                 ]
             ])

@@ -36,14 +36,14 @@ class StructureController extends AbstractController
     public function index(StructureRepository $repository,PaginatorInterface $paginator,Request $request,int $id): Response
     {
        
-        $structure  = $repository->findBy(["partenaire"=>$id]);
+        $structures  = $repository->findBy(["partenaire"=>$id]);
         // $structure = $repository->findAll();
          
-        // $structure  = $paginator->paginate(
-        //     $repository->findOneBy(["partenaire"=>$id]), /* query NOT result */
-        //     $request->query->getInt('page', 1), /*page number*/
-        //     5 /*limit per page*/
-        // );
+        $structure  = $paginator->paginate(
+            $structures, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            6 /*limit per page*/
+        );
 
         return $this->render('pages/structure/index.html.twig', [
             'structures' => $structure,
@@ -68,9 +68,9 @@ class StructureController extends AbstractController
             
             $this->addFlash(
                'success',
-               'Votre ingrédient à été céer avec succes !'
+               'Votre strucutre à été céer avec succes !'
             );
-        //  return $this->redirectToRoute('structure.index');
+            return $this->redirectToRoute('structure.index',['id' =>$id]);
       
         }
         
@@ -159,7 +159,7 @@ class StructureController extends AbstractController
             $user->setStructure($structure);
             $this->addFlash(
                 'success',
-                'Votre compte à été crée avec succes !'
+                'Votre compte structure à été crée avec succes !'
              );
             $manager->persist($user);
             $manager->flush();

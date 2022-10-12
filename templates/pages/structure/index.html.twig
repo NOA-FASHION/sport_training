@@ -22,7 +22,7 @@
             }
           )
           }}"
-          class="btn btn-success ">
+          class="btn btn-success">
           Créer une structure
         </a>
       </div>
@@ -102,29 +102,35 @@
                 <h4 class="card-title">
                   Responsable
                 </h4>
-                  <p class="card-text">
-                  {{ structure.nameResponsable }}
+                <p class="card-text">
+                  {{ (structure.nameResponsable|length) > 24
+                    ? (structure.nameResponsable|slice(0, 24)) ~ '...'
+                    : structure.nameResponsable }}
+                  {# {{ partenaire.shortDescription }} #}
                 </p>
-                 <h4 class="card-title">
+
+                <h4 class="card-title">
                   Adresse
                 </h4>
-                <p class="card-text">
-                  {{ structure.adresseStructure }}
+                   <p class="card-text">
+                  {{ (structure.adresseStructure|length) > 24
+                    ? (structure.adresseStructure|slice(0, 24)) ~ '...'
+                    : structure.adresseStructure }}
+                  {# {{ partenaire.shortDescription }} #}
                 </p>
+   
               </div>
             </div>
           </div>
         {% endfor %}
       </div>
     </div>
-    
   </div>
-  {# <div class="navigation d-flex justify-content-center mt-4">
-      {{ knp_pagination_render(structure) }}
-    </div> #}
+  <div class="navigation d-flex justify-content-center mt-4">
+    {{ knp_pagination_render(structures) }}
+  </div>
   {# {% else %}
     <h4>
-      Il n'y a pas de partenairescomposer require knplabs/knp-paginator-bundle
-    </h4>
+      Il n'y a pas de partenaires
   {% endif %} #}
 {% endblock %}

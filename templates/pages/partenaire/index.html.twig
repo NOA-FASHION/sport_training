@@ -7,11 +7,27 @@
 {% block body %}
   <div class="container">
     <div class="row">
-    
+        <div class="card bg-secondary m-3"
         {{ form_start(form) }}
 
-        {{ form_end(form) }}
+      <div class="form-group">
+      {{ form_label(form.p) }}
+      {{ form_widget(form.p) }}
+      <div class="form-error">
+        {{ form_errors(form.p) }}
+      </div>
+    </div>
 
+      <div class="btn-group">
+      {{ form_label(form.active) }}
+      {{ form_widget(form.active) }}
+      <div class="form-error">
+        {{ form_errors(form.active) }}
+      </div>
+    </div>
+
+        {{ form_end(form) }}
+    </div>
 
       <div class="row">
         {% if partenaires.items is not same as([]) %}
@@ -53,7 +69,7 @@
                     </a>
 
                     <div class="card bg-secondary mb-3"
-                      style="max-width: 20rem;">
+                      style="max-width: 20rem; ">
                       <div class="row justify-content-evenly">
                         <div class="mx-4 col card-header">
                           <h5>
@@ -125,25 +141,27 @@
                             class="img-fluid"
                             alt="" />
                           <h2 class="card-title">
-                            Description
+                            Description 
                           </h2>
                           <p class="card-text">
-                            {{ (partenaire.shortDescription|length) > 30
-                              ? (partenaire.shortDescription|slice(0, 30))
+                            {{ (partenaire.fullDescription|length) > 24
+                              ? (partenaire.fullDescription|slice(0, 24))
                                 ~ '...'
-                              : partenaire.shortDescription }}
+                              : partenaire.fullDescription }}
                             {# {{ partenaire.shortDescription }} #}
                           </p>
-                          <h2 class="card-title">
-                            Description
-                          </h2>
+                           <h4 class="card-title">
+                            DPO
+                          </h4>
                           <p class="card-text">
-                            {{ (partenaire.fullDescription|length) > 120
-                              ? (partenaire.shortDescription|slice(0, 120))
+                            {{ (partenaire.dpo|length) > 30
+                              ? (partenaire.dpo|slice(0, 30))
                                 ~ '...'
-                              : partenaire.shortDescription }}
+                              : partenaire.dpo }}
                             {# {{ partenaire.fullDescription }} #}
                           </p>
+                          
+
                         </div>
                       </a>
                     </div>

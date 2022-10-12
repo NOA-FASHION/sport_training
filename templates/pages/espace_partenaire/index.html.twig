@@ -69,11 +69,26 @@
                     {{ partenaire.shortDescription|length > 30 ? partenaire.shortDescription|slice(0, 30) ~ '...' : partenaire.shortDescription  }}
                       {# {{ partenaire.shortDescription }} #}
                     </p>
-                    <h2 class="card-title">Description</h2>
-                    <p class="card-text">
-                       {{ partenaire.fullDescription|length > 120 ? partenaire.shortDescription|slice(0, 120) ~ '...' : partenaire.shortDescription  }}
-                      {# {{ partenaire.fullDescription }} #}
-                    </p>
+                     <h4 class="card-title">
+                            DPO
+                          </h4>
+                          <p class="card-text">
+                            {{ (partenaire.dpo|length) > 30
+                              ? (partenaire.dpo|slice(0, 30))
+                                ~ '...'
+                              : partenaire.dpo }}
+                            {# {{ partenaire.fullDescription }} #}
+                          </p>
+                          <h4 class="card-title">
+                            Contact technique
+                          </h4>
+                          <p class="card-text">
+                            {{ (partenaire.technicalContact|length) > 30
+                              ? (partenaire.technicalContact|slice(0, 30))
+                                ~ '...'
+                              : partenaire.technicalContact }}
+                            {# {{ partenaire.fullDescription }} #}
+                          </p>
                   </div>
                 
 
@@ -362,8 +377,8 @@
                 style="max-width: 20rem;">
                 <div class="row">
                   <div class="mx-4 col card-header">
-                    Nom structure: {{ structure.nameStructure }}
-            
+                
+            STRUCTURE :     {{ structure.nameStructure|length > 8 ? structure.nameStructure|slice(0, 8) ~ '...' : structure.nameStructure  }}
                     <div class=" my-4">
                       {% if structure.activeStructure %}
                         <div class="col form-check form-switch">
@@ -396,10 +411,10 @@
 
                 <div class="card-body bg-success">
                   <h4 class="card-title">
-                  Responsable :   
+                  Responsable 
                   </h4>
                  <p class="card-text">
-                 {{ structure.adresseStructure }}
+                 {{ structure.nameResponsable }}
                   </h4>
 
                    <h4 class="card-title">

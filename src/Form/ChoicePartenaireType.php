@@ -23,8 +23,9 @@ class ChoicePartenaireType extends AbstractType
             'label'=>false,
             'required'=>false,
             'attr'=>[
+                'class' =>'form-control ',
                 'placeholder'=>'rechercher',
-                'class' => 'm-4 ',
+                'class' => 'mt-4 ',
             ]
                 
             ])
@@ -37,18 +38,18 @@ class ChoicePartenaireType extends AbstractType
                 ],
                 'required'=>false,
                 'attr' => [
-                    'class' => 'dropdown-toggle ',
+                    'class' => 'form-select ',
                    
                 ],
                 'label' => 'Choix',
                 'label_attr' => [
-                    'class' => 'form-label  m-4'
+                    'class' => 'form-label  mr-2'
                 ],
           
             ])
             ->add('submit', SubmitType::class,[
                 'attr'=>[
-                    'class' => 'btn btn-primary m-1'
+                    'class' => 'btn btn-primary my-2'
                 ],
                 'label' =>'Valider'
                ]);

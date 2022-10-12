@@ -114,7 +114,7 @@ class StructureType extends AbstractType
                 'required'=> false,
                 'label' => 'members_product',
                 'label_attr' =>[
-                    'class'=> 'fbadge bg-primary fs-6 mr-5 '
+                    'class'=> 'badge bg-primary fs-6 mr-5 '
                 ],
                 'constraints' =>[
                     new Assert\NotNull(),
