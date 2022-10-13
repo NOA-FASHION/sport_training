@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="{{ path('home.index') }}">
+          <a class="nav-link active text-success" href="{{ path('home.index') }}">
             Home
             <span class="visually-hidden">(current)</span>
           </a>
@@ -24,18 +24,18 @@
         {% if app.user %}
           {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
-              <a class="nav-link" href="{{ path('partenaire.index') }}">
+              <a class="nav-link text-success" href="{{ path('partenaire.index') }}">
                 partenaire
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="{{ path('user.index') }}">admin</a>
+              <a class="nav-link text-success" href="{{ path('user.index') }}">admin</a>
             </li>
           {% endif %}
           {% if is_granted('ROLE_PARTENAIRE') %}
             <li class="nav-item">
-              <a class="nav-link" href="{{ path('espace.partenaire') }}">
+              <a class="nav-link text-success" href="{{ path('espace.partenaire') }}">
                 Espace partenaire
               </a>
             </li>
@@ -43,7 +43,7 @@
 
           {% if is_granted('ROLE_STRUCTURE') %}
             <li class="nav-item">
-              <a class="nav-link" href="{{ path('espace.structure') }}">
+              <a class="nav-link text-success" href="{{ path('espace.structure') }}">
                 Espace structure
               </a>
             </li>
@@ -59,7 +59,7 @@
         <ul class="navbar-nav me-auto">
           {% if app.user %}
             <li class="nav-item dropdown me-5">
-              <a class="nav-link dropdown-toggle"
+              <a class="nav-link dropdown-toggle text-success"
                 data-bs-toggle="dropdown"
                 href="#"
                 role="button"
@@ -71,7 +71,7 @@
                 {# <a class="dropdown-item" href="{{ path('user.edit',{id : app.user.id}) }}">Modifier informations</a>
             <a class="dropdown-item" href="{{ path('user.edit.password',{id : app.user.id}) }}">Modifier mot de passe</a> #}
                 {# <div class="dropdown-divider"></div> #}
-                <a class="dropdown-item" href="{{ path('security.logout') }}">
+                <a class="dropdown-item text-success" href="{{ path('security.logout') }}">
                   Déconnexion
                 </a>
               </div>
