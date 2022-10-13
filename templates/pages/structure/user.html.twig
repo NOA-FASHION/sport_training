@@ -3,7 +3,9 @@
 {% block title %}sport-training{% endblock %}
 
 {% block body %}
+{% if user is null %}
 <a href="{{ path('structure.new.user',{id : id}) }}" class="btn btn-primary m-4">Création un responable</a>
+{% endif %}
 {% if user is not null %}
 <div class="container mt-4">
 <h1>Responsable de la structure {{ structure.nameStructure }}</h1>

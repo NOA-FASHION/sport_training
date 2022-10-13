@@ -208,7 +208,7 @@ class PartenaireController extends AbstractController
             $mailer->send($email);
 
 
-            return $this->redirectToRoute('partenaire.index');
+            return $this->redirectToRoute('partenaire.user.index',['id' =>$id ]);
            
         }
         return $this->render('pages/partenaire/registration.html.twig',[
