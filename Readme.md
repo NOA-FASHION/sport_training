@@ -2,11 +2,11 @@
 # PROJET SPORT-TRAINING
 SPORT-TRAINING
 Ce document est un guide de déploiement et un manuel d'utilisation 
-pour l'application Sport_training dévéloppé dans le cadre de l'ECF 
+pour l'application Sport_training dévéloppée dans le cadre de l'ECF 
 de l'école STUDI.
 <br/>
-Selon le cahier des charges l'application demandé devra être
-un gestionnaire d'acces à des modules d'une application tierce.
+Selon le cahier des charges l'application demandée devra être
+un gestionnaire d'accès à des modules d'une application tierce.
 
 
 # Fonctionnalités de l'application
@@ -14,51 +14,51 @@ un gestionnaire d'acces à des modules d'une application tierce.
 
 1. ## Gestion des partenaires
 
-#### Utilisateur consernés: Equipe Tech
+#### Utilisateurs consernés: Equipe Tech
 
 * Ajout de partenaire franchisé.
-* Association et création d'un compte apartenaire par partenaire
+* Association et création d'un compte responsqble par partenaire
 * Activation/désaction des partenaires
 
 2.  ## Gestion des structures
 
-#### Utilisateur consernés: Equipe Tech
+#### Utilisateurs consernés: Equipe Tech
 
 * Ajout de structures par partenaire
-* Association et création d'un compte structure par structure
-* Activation/désaction des structures
+* Association et création d'un compte responsble par structure
+* Activation/désactivation des structures
 
-3.  ## Gestion des acces
+3.  ## Gestion des accès
 
-#### Utilisateur consernés: Equipe Tech le partenaire, la structure
+#### Utilisateurs consernés: Equipe Tech le partenaire, la structure
 
-* Acces en lecture/ecriture permission : Equipe tech
-* Acces en lecture permission: Partenaire et structure
+* Accès en lecture/écriture permission : Equipe tech
+* Accès en lecture permission : Partenaire et structure
 
 4.  ## Se connecter
 
-#### Utilisateur consernés: Equipe Tech le partenaire, la structure
+#### Utilisateurs consernés: Equipe Tech le partenaire, la structure
 
-* Email envoyer lors de la création de structures ou partenaires
-* Information d'autentification envoyer par email aux gérants de structures et aux partenaires.
-* Email envoyer lors des modifications de permissions.
-* Acces des gérants de structures et des partenaires à la plateforme apres authentification en lecture seul. 
-* Acces apres authentification en lecture/ecriture aux admins à la plateforme.
+* Email envoyé lors de la création de structures ou partenaires
+* Information d'autentification envoyée par email aux gérants de structures et aux partenaires.
+* Email envoyé lors des modifications de permissions.
+* Accès des gérants de structures et des partenaires à la plateforme après authentification en lecture seule. 
+* Accès après authentification en lecture/ecriture aux admins de la plateforme.
 
 
 5.  ## Confirmation de sécurité
 
-#### Utilisateur consernés: Equipe Tech
+#### Utilisateurs consernés: Equipe Tech
 
-* A chaque modification ou suppréssion,affichage d'un méssage de confirmation pour valider l'action. 
+* A chaque modification ou suppréssion, affichage d'un message de confirmation pour valider l'action. 
 
 6.  ## Recherche dynamique
 
-#### Utilisateur consernés: Equipe Tech  le partenaire, la structure
+#### Utilisateurs consernés: Equipe Tech  le partenaire, la structure
 
 * l'application proposera une barre de recherche pour filter les recherches
-* le premier filtre sera disponible en tapant les premieres lettres du partenaires ou de la structure
-* le deuxieme sera paramétré par rapport aux éléments actifs ou non.
+* le premier filtre sera disponible en tapant les premières lettres du partenaire ou de la structure
+* le deuxième sera paramétré par rapport aux éléments actifs ou non.
 ------
 # Tech Stack
 
@@ -77,7 +77,7 @@ un gestionnaire d'acces à des modules d'une application tierce.
 ### installation de la base de données
 
 Télécharger les paquets de postgress à l'adresse suivante : 
-[Download PostGress](postgresql.org/download/macosx/), installer les paquets sur votre ordinateurs
+[Download PostGress](postgresql.org/download/macosx/), installer les paquets sur votre ordinateur
 
 ### installation de symfony
 
@@ -97,8 +97,8 @@ application Symfony vous devez :
 Il est recommandé aussi l'installation de 
 [Symfony CLI](https://symfony.com/download)
 
-La descriptions des procédures d'installation suivantes sont destinées à l'OS MACOS, pour les autres système 
-d'exploitaion vous pouvez vous référez à la documentation officielle.
+La description des procédures d'installation suivantes sont destinées à l'OS MACOS, pour les autres systèmes 
+d'exploitation vous pouvez vous référez à la documentation officielle.
 
 ## Procédures d'installation 
 
@@ -118,7 +118,7 @@ $ brew install symfony-cli/tap/symfony-cli
 ```Terminal 
 $ brew install composer
 ```
-crée le lien symbolique:
+créer le lien symbolique:
 
 ```Terminal 
 $ brew link --overwrite composer
@@ -148,10 +148,10 @@ $ [OK]
 
 
 ## Création de l'application
-Apres avoir créer le dossier qui recevra tous les élements de votre appplication symfony, 
+Après avoir créer le dossier qui recevra tous les élements de votre appplication symfony, 
 vous pouvez l'ouvrir avec votre éditeur de texte préféré.
 
-Ensuite vous ouvrz un terminal à la racine du dossier et vous tapez la commande suivante:
+Ensuite vous ouvrez un terminal à la racine du dossier et vous tapez la commande suivante:
 
 ```Terminal 
 $ symfony new my_project --full
@@ -160,9 +160,9 @@ $ symfony new my_project --full
 L'option --full est l'option pour préciser à symfony cli d'installer tous les packets nécéssaires 
 pour faire une application web complète.
 
-## Démarer l'environnement
+## Démarrer l'environnement
 
-Pour démarer l'environement il faut rentrer dans le projet et démarer le server symfony 
+Pour démarrer l'environement il faut rentrer dans le projet et démarrer le server symfony 
 avec les commandes suivantes:
 ```Terminal 
 $ cd my-project/
@@ -188,7 +188,7 @@ git push -u origin main
 
 
 # Déploiement de l'application
-Le déploiement à été éffectué sur un serveur VPS, le choix du provider est Hostinger.
+Le déploiement a été éffectué sur un serveur VPS, le choix du provider est Hostinger.
 
 # Installation de l'environement
 
@@ -219,7 +219,7 @@ application Symfony vous devez :
 * Installez PHP 8.1 ou supérieur et ces extensions.
 
 ### Installer Composer
-* install Composer , qui est utilisé pour installer les packages PHP.
+* install Composer, qui est utilisé pour installer les packages PHP.
 
 
 
@@ -227,7 +227,7 @@ application Symfony vous devez :
 Il est recommandé aussi l'installation de 
 [Symfony CLI](https://symfony.com/download)
 
-La descriptions des procédures d'installation suivantes sont destinées à l'OS Linux Ubuntu, pour les autres système 
+La descriptions des procédures d'installation suivantes sont destinées à l'OS Linux Ubuntu, pour les autres systèmes 
 d'exploitaion vous pouvez vous référez à la documentation officielle.
 
 ## Procédures d'installation 
@@ -283,7 +283,7 @@ $ [OK]
 
 
 
-# Instalation et paramétrage de GIT
+# Installation et paramétrage de GIT
 
 
 ## installer GIT
@@ -306,7 +306,7 @@ $ git push -u origin main
 ------
 # sécurisation de l'environement
 
-il est maintenant temps de mettre en place un pare-feu. Un pare-feu est essentiel lors de la configuration du VPS pour limiter le trafic indésirable sortant ou entrant dans votre VPS. Installez ufw et configurez un pare-feu pour autoriser les opérations SSH en faisant .
+Il est maintenant temps de mettre en place un pare-feu. Un pare-feu est essentiel lors de la configuration du VPS pour limiter le trafic indésirable sortant ou entrant dans votre VPS. Installez ufw et configurez un pare-feu pour autoriser les opérations SSH en faisant:
 
 ## Installation du parefeu ufw
 ```Terminal
