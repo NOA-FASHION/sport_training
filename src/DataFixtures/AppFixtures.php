@@ -26,8 +26,6 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-
-        
          //users
         $users = [];
         for ($i=0; $i < 10; $i++) { 
@@ -41,8 +39,6 @@ class AppFixtures extends Fixture
             $manager->persist($user);
 
         }
-
-
             //partenaires
             $partenaires=[];
         for ($i=0; $i < 20; $i++) { 
