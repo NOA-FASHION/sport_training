@@ -327,11 +327,7 @@ $ sudo symfony composer install
 ## Connexion de symfony à la base de données et paramétrage du MailerDSN pour le routage des emails
 Cela se fait en rentrant les paramètre de connexion dans le fichier .env qui se trouve à la racine du porjet
 
-```VsCode 
-DATABASE_URL="postgresql://tintin:Wipit@2017@127.0.0.1:5432/SportTraining?serverVersion=14&charset=utf8"
-MAILER_DSN=sendgrid+smtp://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@default
 
-```
 ## création de la base des tables et des données factices
 
 ```Terminal
