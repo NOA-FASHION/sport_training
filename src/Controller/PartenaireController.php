@@ -131,7 +131,10 @@ class PartenaireController extends AbstractController
                 //->priority(Email::PRIORITY_HIGH)
                 ->subject('Modification des information du partenaire '.$partenaire->getName())
                 ->text('Des modifcation ont été éffectuer pour le partenaire '.$partenaire->getName())
-                ->html('<p>connecter vous à l\'adresse suivante pour vérifier les modification éffectuées</p>');
+                ->html('
+                <p>connecter vous à l\'adresse suivante pour vérifier les modification éffectuées</p>
+                <a href="https://backend-strapi.online/sport-training/"> sport-training</a>
+                ');
     
             $mailer->send($email);
                 }

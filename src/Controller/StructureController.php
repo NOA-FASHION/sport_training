@@ -110,7 +110,10 @@ class StructureController extends AbstractController
             //->priority(Email::PRIORITY_HIGH)
             ->subject('Modification des information de la structure '.$structure->getNameStructure())
             ->text('Des modifcation ont été éffectuer sur la structure '.$structure->getNameStructure())
-            ->html('<p>connecter vous à l\'adresse suivante pour vérifier les modification éffectuées</p>');
+            ->html('
+            <p>connecter vous à l\'adresse suivante pour vérifier les modification éffectuées</p>
+            <a href="https://backend-strapi.online/sport-training/"> sport-training</a>
+            ');
 
         $mailer->send($email);
             }
@@ -126,7 +129,7 @@ class StructureController extends AbstractController
 
     #[Route('/structure/user/{id}', name: 'structure.user.index')]
     #[IsGranted('ROLE_ADMIN')]
-    public function indexPartenaireUser(StructureRepository $repository1,UserRepository $repository,PaginatorInterface $paginator,Request $request,$id): Response
+    public function indexStructureUser(StructureRepository $repository1,UserRepository $repository,PaginatorInterface $paginator,Request $request,$id): Response
     {
         $structure =$repository1->findOneBy(["id"=>$id]);
         $idUser = $structure->getUserStructure();
